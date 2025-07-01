@@ -6,12 +6,10 @@ function resizeCanvas() {
   width = canvas.width = window.innerWidth;
   height = canvas.height = window.innerHeight;
 }
-window.addEventListener('resize', resizeCanvas);
 resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
 
-// -------------------------------
-// Estado inicial do autômato
-// -------------------------------
+// --- Configuração do autômato
 const gridSize = 200;
 const grid = [];
 for (let y = 0; y < gridSize; y++) {
@@ -21,24 +19,23 @@ for (let y = 0; y < gridSize; y++) {
   }
 }
 
-// -------------------------------
-// Regras do Jogo da Vida
-// -------------------------------
+// --- Jogo da Vida
 function updateGameOfLife() {
   const next = [];
   for (let y = 0; y < gridSize; y++) {
     next[y] = [];
     for (let x = 0; x < gridSize; x++) {
-      let neighbors = 0;
+      let count = 0;
       for (let dy = -1; dy <= 1; dy++) {
         for (let dx = -1; dx <= 1; dx++) {
           if (dx === 0 && dy === 0) continue;
           const ny = (y + dy + gridSize) % gridSize;
           const nx = (x + dx + gridSize) % gridSize;
-          neighbors += grid[ny][nx];
+          count += grid[ny][nx];
         }
       }
-      next[y][x] = (grid[y][x] === 1 && (neighbors === 2 || neighbors === 3)) || (grid[y][x] === 0 && neighbors === 3) ? 1 : 0;
+      const alive = grid[y][x];
+      next[y][x] = alive ? (count === 2 || count === 3 ? 1 : 0) : (count === 3 ? 1 : 0);
     }
   }
   for (let y = 0; y < gridSize; y++) {
@@ -48,56 +45,45 @@ function updateGameOfLife() {
   }
 }
 
-// -------------------------------
-// Função Mandelbrot simplificada
-// -------------------------------
+// --- Fractal Mandelbrot (simplificado)
 function mandelbrot(x, y) {
-  let real = x, imag = y;
-  for (let i = 0; i < 30; i++) {
-    const tempReal = real * real - imag * imag + x;
-    const tempImag = 2 * real * imag + y;
-    real = tempReal;
-    imag = tempImag;
-    if (real * real + imag * imag > 4) return i;
+  let zx = 0, zy = 0, i = 0;
+  const max = 30;
+  while (zx*zx + zy*zy < 4 && i < max) {
+    let tmp = zx*zx - zy*zy + x;
+    zy = 2 * zx * zy + y;
+    zx = tmp;
+    i++;
   }
-  return 30;
+  return i;
 }
 
-// -------------------------------
-// Renderização
-// -------------------------------
+// --- Renderização
 function render() {
   ctx.clearRect(0, 0, width, height);
-
-  const cellSize = width / gridSize;
-
+  const cellSize = Math.min(width, height) / gridSize;
   for (let y = 0; y < gridSize; y++) {
     for (let x = 0; x < gridSize; x++) {
       if (grid[y][x]) {
-        // Criar uma cor baseada no Mandelbrot
-        const nx = x / gridSize * 3.5 - 2.5;
-        const ny = y / gridSize * 2.0 - 1.0;
-        const m = mandelbrot(nx, ny);
-        const color = `hsl(${(m * 10) % 360}, 100%, 50%)`;
-        ctx.fillStyle = color;
+        const fx = x / gridSize * 3.5 - 2.5;
+        const fy = y / gridSize * 2.0 - 1.0;
+        const m = mandelbrot(fx, fy);
+        const hue = (m * 12) % 360;
+        ctx.fillStyle = `hsl(${hue}, 100%, 50%)`;
         ctx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
       }
     }
   }
 }
 
-// -------------------------------
-// Interação do usuário
-// -------------------------------
+// --- Interatividade com toque
 canvas.addEventListener('pointerdown', (e) => {
-  const x = Math.floor(e.offsetX / (width / gridSize));
-  const y = Math.floor(e.offsetY / (height / gridSize));
-  grid[y][x] = 1; // ativa célula ao toque
+  const cellX = Math.floor(e.offsetX / (width / gridSize));
+  const cellY = Math.floor(e.offsetY / (height / gridSize));
+  grid[cellY][cellX] = 1;
 });
 
-// -------------------------------
-// Loop principal
-// -------------------------------
+// --- Loop principal
 function loop() {
   updateGameOfLife();
   render();
