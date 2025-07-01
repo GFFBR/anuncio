@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <title>Gaffber RPG 2D - Exploração Infinita</title>
@@ -6,24 +7,28 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3940256099942544" crossorigin="anonymous"></script>
 <style>
 body { margin: 0; padding: 0; overflow: hidden; background: #111; color: #fff; font-family: Arial; }
-#gameCanvas { background: #222; display: block; margin: 0 auto; border: 2px solid #555; }
+#gameCanvas { background: #333; display: block; margin: 0 auto; border: 2px solid #555; }
 #hud { position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.5); padding: 10px; border-radius: 5px; font-size: 14px; }
 #hud span { display: block; margin: 2px 0; }
 .ads { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); }
 </style>
 </head>
 <body>
+
 <div id="hud">
     <span>Vida: <span id="vida">100</span></span>
     <span>Itens coletados: <span id="itens">0</span></span>
     <span>Monstros derrotados: <span id="monstros">0</span></span>
 </div>
+
 <canvas id="gameCanvas" width="800" height="600"></canvas>
+
 <div class="ads">
     <ins class="adsbygoogle" style="display:block; width:300px; height:250px;"
         data-ad-client="ca-pub-3940256099942544" data-ad-slot="3986624511" data-ad-format="auto" data-full-width-responsive="true"></ins>
     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
+
 <script>
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
@@ -31,41 +36,105 @@ const tileSize = 40;
 let player = { x: 0, y: 0, vida: 100, itens: 0, monstros: 0 };
 let mapa = {};
 let keys = {};
-let seed = Math.random() * 99999;function ruído(x, y) { return Math.abs(Math.sin(x * 12.9898 + y * 78.233 + seed)) % 1; }
+let seed = Math.random() * 99999;
 
-function gerarMapa(cx, cy) { for (let y = cy - 8; y < cy + 8; y++) { for (let x = cx - 10; x < cx + 10; x++) { const key = ${x},${y}; if (!(key in mapa)) { const r = ruído(x, y); if (r < 0.1) mapa[key] = 'monstro'; else if (r < 0.15) mapa[key] = 'item'; else mapa[key] = 'chao'; } } } }
+function ruído(x, y) {
+    return Math.abs(Math.sin(x * 12.9898 + y * 78.233 + seed)) % 1;
+}
 
-function desenhar() { ctx.clearRect(0, 0, canvas.width, canvas.height); gerarMapa(player.x, player.y); for (let y = -8; y < 8; y++) { for (let x = -10; x < 10; x++) { const tx = player.x + x; const ty = player.y + y; const key = ${tx},${ty}; const px = (x + 10) * tileSize; const py = (y + 8) * tileSize;
-
-ctx.fillStyle = '#333';
-        ctx.fillRect(px, py, tileSize, tileSize);
-        if (mapa[key] === 'item') {
-            ctx.fillStyle = 'gold';
-            ctx.beginPath();
-            ctx.arc(px + tileSize/2, py + tileSize/2, 8, 0, Math.PI * 2);
-            ctx.fill();
-        } else if (mapa[key] === 'monstro') {
-            ctx.fillStyle = 'red';
-            ctx.fillRect(px + 10, py + 10, 20, 20);
+function gerarMapa(cx, cy) {
+    for (let y = cy - 8; y < cy + 8; y++) {
+        for (let x = cx - 10; x < cx + 10; x++) {
+            const key = `${x},${y}`;
+            if (!(key in mapa)) {
+                const r = ruído(x, y);
+                if (r < 0.1) mapa[key] = 'monstro';
+                else if (r < 0.15) mapa[key] = 'item';
+                else mapa[key] = 'chao';
+            }
         }
-        ctx.strokeStyle = '#555';
-        ctx.strokeRect(px, py, tileSize, tileSize);
     }
 }
-ctx.fillStyle = 'cyan';
-ctx.fillRect(10 * tileSize + 5, 8 * tileSize + 5, tileSize - 10, tileSize - 10);
 
+function desenhar() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    gerarMapa(player.x, player.y);
+
+    for (let y = -8; y < 8; y++) {
+        for (let x = -10; x < 10; x++) {
+            const tx = player.x + x;
+            const ty = player.y + y;
+            const key = `${tx},${ty}`;
+            const px = (x + 10) * tileSize;
+            const py = (y + 8) * tileSize;
+
+            // Chão
+            ctx.fillStyle = '#444';
+            ctx.fillRect(px, py, tileSize, tileSize);
+
+            // Itens
+            if (mapa[key] === 'item') {
+                ctx.fillStyle = 'gold';
+                ctx.beginPath();
+                ctx.arc(px + tileSize/2, py + tileSize/2, 8, 0, Math.PI * 2);
+                ctx.fill();
+            }
+            // Monstros
+            else if (mapa[key] === 'monstro') {
+                ctx.fillStyle = 'red';
+                ctx.fillRect(px + 10, py + 10, 20, 20);
+            }
+
+            ctx.strokeStyle = '#555';
+            ctx.strokeRect(px, py, tileSize, tileSize);
+        }
+    }
+
+    // Jogador
+    ctx.fillStyle = 'cyan';
+    ctx.fillRect(10 * tileSize + 5, 8 * tileSize + 5, tileSize - 10, tileSize - 10);
 }
 
-function atualizar() { if (keys['ArrowUp']) mover(0, -1); if (keys['ArrowDown']) mover(0, 1); if (keys['ArrowLeft']) mover(-1, 0); if (keys['ArrowRight']) mover(1, 0); }
+function atualizar() {
+    if (keys['ArrowUp']) mover(0, -1);
+    if (keys['ArrowDown']) mover(0, 1);
+    if (keys['ArrowLeft']) mover(-1, 0);
+    if (keys['ArrowRight']) mover(1, 0);
+}
 
-function mover(dx, dy) { player.x += dx; player.y += dy; const key = ${player.x},${player.y}; if (mapa[key] === 'item') { player.itens++; mapa[key] = 'chao'; } else if (mapa[key] === 'monstro') { player.monstros++; player.vida -= 10; mapa[key] = 'chao'; } if (player.vida <= 0) reiniciar(); }
+function mover(dx, dy) {
+    player.x += dx;
+    player.y += dy;
+    const key = `${player.x},${player.y}`;
+    if (mapa[key] === 'item') {
+        player.itens++;
+        mapa[key] = 'chao';
+    } else if (mapa[key] === 'monstro') {
+        player.monstros++;
+        player.vida -= 10;
+        mapa[key] = 'chao';
+    }
+    if (player.vida <= 0) reiniciar();
+}
 
-function reiniciar() { player = { x: 0, y: 0, vida: 100, itens: 0, monstros: 0 }; mapa = {}; }
+function reiniciar() {
+    player = { x: 0, y: 0, vida: 100, itens: 0, monstros: 0 };
+    mapa = {};
+}
 
-function loop() { atualizar(); desenhar(); document.getElementById('vida').textContent = player.vida; document.getElementById('itens').textContent = player.itens; document.getElementById('monstros').textContent = player.monstros; requestAnimationFrame(loop); }
+function loop() {
+    atualizar();
+    desenhar();
+    document.getElementById('vida').textContent = player.vida;
+    document.getElementById('itens').textContent = player.itens;
+    document.getElementById('monstros').textContent = player.monstros;
+    requestAnimationFrame(loop);
+}
 
-document.addEventListener('keydown', e => keys[e.key] = true); document.addEventListener('keyup', e => keys[e.key] = false); loop(); </script>
+document.addEventListener('keydown', e => keys[e.key] = true);
+document.addEventListener('keyup', e => keys[e.key] = false);
+loop();
+</script>
 
 </body>
 </html>
