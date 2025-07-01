@@ -1,140 +1,27 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<!DOCTYPE html><html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>Gaffber RPG 2D - Exploração Infinita</title>
+<title>Gaffber RPG Infinito</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3940256099942544" crossorigin="anonymous"></script>
 <style>
-body { margin: 0; padding: 0; overflow: hidden; background: #111; color: #fff; font-family: Arial; }
-#gameCanvas { background: #333; display: block; margin: 0 auto; border: 2px solid #555; }
-#hud { position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.5); padding: 10px; border-radius: 5px; font-size: 14px; }
-#hud span { display: block; margin: 2px 0; }
-.ads { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); }
+body{margin:0;padding:0;background:#000;color:#fff;font-family:Arial, sans-serif;overflow:hidden}#ui{position:absolute;top:10px;left:10px;background:rgba(0,0,0,0.7);padding:10px;border-radius:5px;z-index:2}#ui span{display:block;margin:2px 0}canvas{background:#111;display:block;margin:0 auto;border:2px solid #333}#msg{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,0.8);padding:20px;display:none}
 </style>
 </head>
 <body>
-
-<div id="hud">
-    <span>Vida: <span id="vida">100</span></span>
-    <span>Itens coletados: <span id="itens">0</span></span>
-    <span>Monstros derrotados: <span id="monstros">0</span></span>
-</div>
-
-<canvas id="gameCanvas" width="800" height="600"></canvas>
-
-<div class="ads">
-    <ins class="adsbygoogle" style="display:block; width:300px; height:250px;"
-        data-ad-client="ca-pub-3940256099942544" data-ad-slot="3986624511" data-ad-format="auto" data-full-width-responsive="true"></ins>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-</div>
-
+<div id="ui"><span>Vida: <b id="vida">100</b></span><span>Nível: <b id="nivel">1</b></span><span>Itens: <b id="itens">0</b></span><span>Missões: <b id="missoes">0</b></span></div>
+<div id="msg"></div>
+<canvas id="game" width="900" height="600"></canvas>
 <script>
-const canvas = document.getElementById('gameCanvas');
-const ctx = canvas.getContext('2d');
-const tileSize = 40;
-let player = { x: 0, y: 0, vida: 100, itens: 0, monstros: 0 };
-let mapa = {};
-let keys = {};
-let seed = Math.random() * 99999;
-
-function ruído(x, y) {
-    return Math.abs(Math.sin(x * 12.9898 + y * 78.233 + seed)) % 1;
-}
-
-function gerarMapa(cx, cy) {
-    for (let y = cy - 8; y < cy + 8; y++) {
-        for (let x = cx - 10; x < cx + 10; x++) {
-            const key = `${x},${y}`;
-            if (!(key in mapa)) {
-                const r = ruído(x, y);
-                if (r < 0.1) mapa[key] = 'monstro';
-                else if (r < 0.15) mapa[key] = 'item';
-                else mapa[key] = 'chao';
-            }
-        }
-    }
-}
-
-function desenhar() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    gerarMapa(player.x, player.y);
-
-    for (let y = -8; y < 8; y++) {
-        for (let x = -10; x < 10; x++) {
-            const tx = player.x + x;
-            const ty = player.y + y;
-            const key = `${tx},${ty}`;
-            const px = (x + 10) * tileSize;
-            const py = (y + 8) * tileSize;
-
-            // Chão
-            ctx.fillStyle = '#444';
-            ctx.fillRect(px, py, tileSize, tileSize);
-
-            // Itens
-            if (mapa[key] === 'item') {
-                ctx.fillStyle = 'gold';
-                ctx.beginPath();
-                ctx.arc(px + tileSize/2, py + tileSize/2, 8, 0, Math.PI * 2);
-                ctx.fill();
-            }
-            // Monstros
-            else if (mapa[key] === 'monstro') {
-                ctx.fillStyle = 'red';
-                ctx.fillRect(px + 10, py + 10, 20, 20);
-            }
-
-            ctx.strokeStyle = '#555';
-            ctx.strokeRect(px, py, tileSize, tileSize);
-        }
-    }
-
-    // Jogador
-    ctx.fillStyle = 'cyan';
-    ctx.fillRect(10 * tileSize + 5, 8 * tileSize + 5, tileSize - 10, tileSize - 10);
-}
-
-function atualizar() {
-    if (keys['ArrowUp']) mover(0, -1);
-    if (keys['ArrowDown']) mover(0, 1);
-    if (keys['ArrowLeft']) mover(-1, 0);
-    if (keys['ArrowRight']) mover(1, 0);
-}
-
-function mover(dx, dy) {
-    player.x += dx;
-    player.y += dy;
-    const key = `${player.x},${player.y}`;
-    if (mapa[key] === 'item') {
-        player.itens++;
-        mapa[key] = 'chao';
-    } else if (mapa[key] === 'monstro') {
-        player.monstros++;
-        player.vida -= 10;
-        mapa[key] = 'chao';
-    }
-    if (player.vida <= 0) reiniciar();
-}
-
-function reiniciar() {
-    player = { x: 0, y: 0, vida: 100, itens: 0, monstros: 0 };
-    mapa = {};
-}
-
-function loop() {
-    atualizar();
-    desenhar();
-    document.getElementById('vida').textContent = player.vida;
-    document.getElementById('itens').textContent = player.itens;
-    document.getElementById('monstros').textContent = player.monstros;
-    requestAnimationFrame(loop);
-}
-
-document.addEventListener('keydown', e => keys[e.key] = true);
-document.addEventListener('keyup', e => keys[e.key] = false);
-loop();
+const c=document.getElementById('game'),ctx=c.getContext('2d'),s=40,map={},p={x:0,y:0,hp:100,lv:1,it:0,ms:0,exp:0},k={},seed=Math.random()*9999,quests=[];let camX=0,camY=0;
+const ru=(x,y)=>(Math.abs(Math.sin(x*12.9+y*78.2+seed)))%1;
+function genMap(cx,cy){for(let y=cy-10;y<cy+10;y++)for(let x=cx-12;x<cx+12;x++){let k=`${x},${y}`;if(!(k in map)){let r=ru(x,y);map[k]=r<.05?'mob':r<.1?'item':r<.12?'quest':'floor'}}}
+function draw(){ctx.clearRect(0,0,c.width,c.height);genMap(p.x,p.y);for(let y=-10;y<10;y++)for(let x=-12;x<12;x++){let tx=p.x+x,ty=p.y+y,k=`${tx},${ty}`,px=(x+12)*s-camX,py=(y+10)*s-camY;ctx.fillStyle=map[k]==='floor'?'#222':map[k]==='item'?'#fd0':map[k]==='mob'?'#c00':map[k]==='quest'?'#0c0':'#333';ctx.fillRect(px,py,s,s);ctx.strokeStyle='#333';ctx.strokeRect(px,py,s,s)}ctx.fillStyle='#0ff';ctx.fillRect(c.width/2-s/4,c.height/2-s/4,s/2,s/2)}
+function logic(){if(k['ArrowUp'])p.y--;if(k['ArrowDown'])p.y++;if(k['ArrowLeft'])p.x--;if(k['ArrowRight'])p.x++;let key=`${p.x},${p.y}`;if(map[key]==='item'){p.it++;map[key]='floor';if(p.it%5===0)spawnQuest()}if(map[key]==='mob'){p.hp-=10;map[key]='floor';if(p.hp<=0)reset()}if(map[key]==='quest'){p.ms++;p.exp+=50;p.lv=Math.floor(p.exp/100)+1;map[key]='floor';showMsg('Missão Completa! +50XP')}camX=0;camY=0}
+function spawnQuest(){let dx=Math.floor(p.x+Math.random()*20-10),dy=Math.floor(p.y+Math.random()*20-10);map[`${dx},${dy}`]='quest'}
+function showMsg(t){let m=document.getElementById('msg');m.innerText=t;m.style.display='block';setTimeout(()=>m.style.display='none',1500)}
+function reset(){p.x=0;p.y=0;p.hp=100;p.it=0;p.ms=0;p.exp=0;p.lv=1;map={}}
+function loop(){logic();draw();document.getElementById('vida').innerText=p.hp;document.getElementById('nivel').innerText=p.lv;document.getElementById('itens').innerText=p.it;document.getElementById('missoes').innerText=p.ms;requestAnimationFrame(loop)}
+document.addEventListener('keydown',e=>k[e.key]=true);document.addEventListener('keyup',e=>k[e.key]=false);loop();
 </script>
-
 </body>
 </html>
