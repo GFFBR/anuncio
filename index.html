@@ -1,27 +1,29 @@
 <!DOCTYPE html><html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Gaffber - Imagem do Dia & Jogo</title>
+    <title>Gaffber - Imagem do Dia & Jogo da Memória</title>
     <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Anúncio AdSense de TESTE -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3940256099942544" crossorigin="anonymous"></script>
 
 <style>
     body { font-family: Arial, sans-serif; background: #f4f4f4; color: #333; margin: 0; text-align: center; }
     header, footer { background: #222; color: #fff; text-align: center; padding: 15px; }
-    .container { max-width: 800px; margin: 20px auto; padding: 0 15px; }
+    .container { max-width: 900px; margin: 20px auto; padding: 0 15px; }
     .imagem-dia img { max-width: 100%; border-radius: 5px; box-shadow: 0 0 5px rgba(0,0,0,0.2); margin-top: 10px; }
     .ads { margin: 20px 0; text-align: center; }
     .jogo { background: #fff; padding: 20px; border-radius: 5px; box-shadow: 0 0 5px rgba(0,0,0,0.1); margin: 20px 0; }
-    #botaoClique { padding: 15px 30px; font-size: 18px; background: #28a745; color: #fff; border: none; border-radius: 5px; cursor: pointer; }
-    #botaoClique:hover { background: #218838; }
+    #tabuleiro { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 20px; }
+    .carta { background: #007bff; color: #fff; height: 100px; display: flex; align-items: center; justify-content: center; font-size: 24px; border-radius: 5px; cursor: pointer; user-select: none; }
+    .carta.virada { background: #28a745; }
     .politica, .contato { font-size: 14px; color: #ccc; margin-top: 10px; }
     .politica a, .contato a { color: #ccc; text-decoration: underline; }
+    @media (max-width: 600px) { .carta { height: 80px; font-size: 20px; } }
 </style>
 
 </head>
 <body><header>
     <h1>Gaffber</h1>
-    <p>Imagem do Dia e Jogo Interativo</p>
+    <p>Imagem do Dia e Jogo da Memória Interativo</p>
 </header><div class="container"><div class="imagem-dia">
     <h2>Imagem do Dia</h2>
     <img id="imagemAleatoria" src="" alt="Imagem do Dia">
@@ -40,10 +42,10 @@
 </div>
 
 <div class="jogo">
-    <h2>Jogo de Reflexo</h2>
-    <p>Clique no botão assim que ele mudar de cor!</p>
-    <button id="botaoClique" disabled>Espere...</button>
-    <p id="resultado"></p>
+    <h2>Jogo da Memória</h2>
+    <p>Encontre os pares iguais. Boa sorte!</p>
+    <div id="tabuleiro"></div>
+    <p id="mensagem" style="margin-top:15px; font-weight:bold;"></p>
 </div>
 
 </div><footer>
@@ -55,40 +57,71 @@
         Contato: <a href="mailto:contato@gaffber.com">contato@gaffber.com</a>
     </div>
 </footer><script>
-    // Carrega imagem aleatória da Unsplash
-    const img = document.getElementById('imagemAleatoria');
-    img.src = 'https://source.unsplash.com/800x400/?nature,technology,city';
+// Carrega imagem aleatória da Unsplash
+const img = document.getElementById('imagemAleatoria');
+img.src = 'https://source.unsplash.com/800x400/?nature,technology,city';
 
-    // Jogo de Reflexo
-    const botao = document.getElementById('botaoClique');
-    const resultado = document.getElementById('resultado');
-    let tempoInicio;
+// Jogo da Memória
+const emojis = ['😀', '🚀', '🎮', '🎲', '💡', '🎯', '🍀', '🌟'];
+let cartas = [...emojis, ...emojis];
+let primeira = null;
+let bloqueio = false;
+let acertos = 0;
+const tabuleiro = document.getElementById('tabuleiro');
+const mensagem = document.getElementById('mensagem');
 
-    function iniciarJogo() {
-        resultado.textContent = '';
-        botao.textContent = 'Espere...';
-        botao.disabled = true;
-        botao.style.backgroundColor = '#28a745';
-
-        const tempoEspera = Math.random() * 3000 + 2000; // Entre 2s e 5s
-        setTimeout(() => {
-            botao.textContent = 'Clique agora!';
-            botao.disabled = false;
-            botao.style.backgroundColor = '#007bff';
-            tempoInicio = Date.now();
-        }, tempoEspera);
+function embaralhar(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
     }
+}
 
-    botao.addEventListener('click', () => {
-        if (botao.disabled) return;
-        const tempoReacao = Date.now() - tempoInicio;
-        resultado.textContent = `Seu tempo de reação: ${tempoReacao} ms.`;
-        botao.textContent = 'Jogar novamente';
-        botao.disabled = false;
-        botao.style.backgroundColor = '#28a745';
-        botao.onclick = iniciarJogo;
+function criarTabuleiro() {
+    embaralhar(cartas);
+    tabuleiro.innerHTML = '';
+    cartas.forEach((emoji, index) => {
+        const carta = document.createElement('div');
+        carta.classList.add('carta');
+        carta.dataset.valor = emoji;
+        carta.dataset.index = index;
+        carta.textContent = '?';
+        carta.addEventListener('click', virarCarta);
+        tabuleiro.appendChild(carta);
     });
+}
 
-    iniciarJogo();
+function virarCarta(e) {
+    if (bloqueio) return;
+    const carta = e.target;
+    if (carta.classList.contains('virada')) return;
+    carta.textContent = carta.dataset.valor;
+    carta.classList.add('virada');
+
+    if (!primeira) {
+        primeira = carta;
+    } else {
+        bloqueio = true;
+        if (carta.dataset.valor === primeira.dataset.valor) {
+            acertos++;
+            primeira = null;
+            bloqueio = false;
+            if (acertos === emojis.length) {
+                mensagem.textContent = 'Parabéns! Você encontrou todos os pares!';
+            }
+        } else {
+            setTimeout(() => {
+                carta.textContent = '?';
+                primeira.textContent = '?';
+                carta.classList.remove('virada');
+                primeira.classList.remove('virada');
+                primeira = null;
+                bloqueio = false;
+            }, 1000);
+        }
+    }
+}
+
+criarTabuleiro();
 </script></body>
 </html>
