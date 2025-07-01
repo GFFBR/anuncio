@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Gaffber Notícias Diárias</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Anúncio AdSense de TESTE -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3940256099942544" crossorigin="anonymous"></script>
+    
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f4f4; color: #333; margin: 0; }
+        header, footer { background: #222; color: #fff; text-align: center; padding: 15px; }
+        .container { max-width: 800px; margin: 20px auto; padding: 0 15px; }
+        article { background: #fff; padding: 15px; margin-bottom: 20px; border-radius: 5px; box-shadow: 0 0 5px rgba(0,0,0,0.1); }
+        h2 { margin-top: 0; }
+        .ads { margin: 20px 0; text-align: center; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Gaffber Notícias Diárias</h1>
+    <p>Atualizações e manchetes do Brasil e do mundo</p>
+</header>
+
+<div class="container">
+
+    <div class="ads">
+        <h2>Publicidade</h2>
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-3940256099942544"
+            data-ad-slot="3986624511"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <h2>Últimas Notícias</h2>
+    <div id="noticias">
+        <p>Carregando notícias...</p>
+    </div>
+
+</div>
+
+<footer>
+    &copy; 2025 Gaffber. Todos os direitos reservados.
+</footer>
+
+<script>
+    fetch('https://api.rss2json.com/v1/api.json?rss_url=https://g1.globo.com/dynamo/rss2.xml')
+    .then(response => response.json())
+    .then(data => {
+        let container = document.getElementById('noticias');
+        container.innerHTML = '';
+        data.items.slice(0, 5).forEach(item => {
+            container.innerHTML += `<article>
+                <h2>${item.title}</h2>
+                <p>${new Date(item.pubDate).toLocaleDateString('pt-BR')}</p>
+                <a href="${item.link}" target="_blank">Leia mais</a>
+            </article>`;
+        });
+    })
+    .catch(err => {
+        document.getElementById('noticias').innerHTML = "<p>Não foi possível carregar as notícias.</p>";
+    });
+</script>
+
+</body>
+</html>
