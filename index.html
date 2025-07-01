@@ -17,13 +17,15 @@
         .ads { margin: 20px 0; text-align: center; }
         .imagem-dia { margin: 20px 0; text-align: center; }
         .imagem-dia img { max-width: 100%; border-radius: 5px; box-shadow: 0 0 5px rgba(0,0,0,0.2); }
+        .politica, .contato { font-size: 14px; color: #ccc; margin-top: 10px; }
+        .politica a, .contato a { color: #ccc; text-decoration: underline; }
     </style>
 </head>
 <body>
 
 <header>
     <h1>Gaffber Notícias Diárias</h1>
-    <p>Atualizações e manchetes do Brasil e do mundo</p>
+    <p>Informações, atualizações e opinião independente diretamente para você.</p>
 </header>
 
 <div class="container">
@@ -31,7 +33,7 @@
     <div class="imagem-dia">
         <h2>Imagem do Dia</h2>
         <img id="imagemAleatoria" src="" alt="Imagem do Dia">
-        <p style="font-size: 14px; color: #666;">Fonte: Unsplash (Imagem pública e gratuita)</p>
+        <p style="font-size: 14px; color: #666;">Fonte: Unsplash (Imagens públicas e gratuitas)</p>
     </div>
 
     <div class="ads">
@@ -45,39 +47,43 @@
         <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
 
-    <h2>Últimas Notícias</h2>
+    <h2>Últimas Notícias & Artigos</h2>
     <div id="noticias">
-        <p>Carregando notícias...</p>
+        <article>
+            <h2>Inovação Tecnológica no Brasil</h2>
+            <p>01/07/2025</p>
+            <p>O cenário tecnológico brasileiro segue crescendo com novos projetos e iniciativas de desenvolvedores independentes como a Gaffber.</p>
+        </article>
+
+        <article>
+            <h2>Dicas de Segurança Digital</h2>
+            <p>01/07/2025</p>
+            <p>Confira as principais dicas para proteger suas contas e dados pessoais na internet de forma prática e segura.</p>
+        </article>
+
+        <article>
+            <h2>Mercado de Desenvolvimento Web</h2>
+            <p>01/07/2025</p>
+            <p>O desenvolvimento web se consolida como uma das áreas mais promissoras, oferecendo oportunidades tanto para empresas quanto para freelancers.</p>
+        </article>
     </div>
 
 </div>
 
 <footer>
-    &copy; 2025 Gaffber. Todos os direitos reservados.
+    &copy; 2025 Gaffber. Todos os direitos reservados.<br>
+    <div class="politica">
+        <a href="#" onclick="alert('Esta é uma política de privacidade modelo. Substitua pelo conteúdo real antes de enviar para o AdSense.'); return false;">Política de Privacidade</a>
+    </div>
+    <div class="contato">
+        Contato: <a href="mailto:contato@gaffber.com">contato@gaffber.com</a>
+    </div>
 </footer>
 
 <script>
     // Carrega imagem aleatória da Unsplash
     const img = document.getElementById('imagemAleatoria');
     img.src = 'https://source.unsplash.com/800x400/?nature,technology,city';
-
-    // Carrega notícias do G1 via RSS
-    fetch('https://api.rss2json.com/v1/api.json?rss_url=https://g1.globo.com/dynamo/rss2.xml')
-    .then(response => response.json())
-    .then(data => {
-        let container = document.getElementById('noticias');
-        container.innerHTML = '';
-        data.items.slice(0, 5).forEach(item => {
-            container.innerHTML += `<article>
-                <h2>${item.title}</h2>
-                <p>${new Date(item.pubDate).toLocaleDateString('pt-BR')}</p>
-                <a href="${item.link}" target="_blank">Leia mais</a>
-            </article>`;
-        });
-    })
-    .catch(err => {
-        document.getElementById('noticias').innerHTML = "<p>Não foi possível carregar as notícias.</p>";
-    });
 </script>
 
 </body>
