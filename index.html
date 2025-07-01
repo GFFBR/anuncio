@@ -15,6 +15,8 @@
         article { background: #fff; padding: 15px; margin-bottom: 20px; border-radius: 5px; box-shadow: 0 0 5px rgba(0,0,0,0.1); }
         h2 { margin-top: 0; }
         .ads { margin: 20px 0; text-align: center; }
+        .imagem-dia { margin: 20px 0; text-align: center; }
+        .imagem-dia img { max-width: 100%; border-radius: 5px; box-shadow: 0 0 5px rgba(0,0,0,0.2); }
     </style>
 </head>
 <body>
@@ -26,10 +28,16 @@
 
 <div class="container">
 
+    <div class="imagem-dia">
+        <h2>Imagem do Dia</h2>
+        <img id="imagemAleatoria" src="" alt="Imagem do Dia">
+        <p style="font-size: 14px; color: #666;">Fonte: Unsplash (Imagem pública e gratuita)</p>
+    </div>
+
     <div class="ads">
         <h2>Publicidade</h2>
         <ins class="adsbygoogle"
-            style="display:block; border: 2px dashed red; height: 250px;"
+            style="display:block; height:250px;"
             data-ad-client="ca-pub-3940256099942544"
             data-ad-slot="3986624511"
             data-ad-format="auto"
@@ -49,6 +57,11 @@
 </footer>
 
 <script>
+    // Carrega imagem aleatória da Unsplash
+    const img = document.getElementById('imagemAleatoria');
+    img.src = 'https://source.unsplash.com/800x400/?nature,technology,city';
+
+    // Carrega notícias do G1 via RSS
     fetch('https://api.rss2json.com/v1/api.json?rss_url=https://g1.globo.com/dynamo/rss2.xml')
     .then(response => response.json())
     .then(data => {
