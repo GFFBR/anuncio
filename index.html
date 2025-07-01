@@ -1,76 +1,52 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<!DOCTYPE html><html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Gaffber Notícias Diárias</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <!-- Anúncio AdSense de TESTE -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3940256099942544" crossorigin="anonymous"></script>
-    
-    <style>
-        body { font-family: Arial, sans-serif; background: #f4f4f4; color: #333; margin: 0; }
-        header, footer { background: #222; color: #fff; text-align: center; padding: 15px; }
-        .container { max-width: 800px; margin: 20px auto; padding: 0 15px; }
-        article { background: #fff; padding: 15px; margin-bottom: 20px; border-radius: 5px; box-shadow: 0 0 5px rgba(0,0,0,0.1); }
-        h2 { margin-top: 0; }
-        .ads { margin: 20px 0; text-align: center; }
-        .imagem-dia { margin: 20px 0; text-align: center; }
-        .imagem-dia img { max-width: 100%; border-radius: 5px; box-shadow: 0 0 5px rgba(0,0,0,0.2); }
-        .politica, .contato { font-size: 14px; color: #ccc; margin-top: 10px; }
-        .politica a, .contato a { color: #ccc; text-decoration: underline; }
-    </style>
+    <title>Gaffber - Imagem do Dia & Jogo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Anúncio AdSense de TESTE -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3940256099942544" crossorigin="anonymous"></script>
+
+<style>
+    body { font-family: Arial, sans-serif; background: #f4f4f4; color: #333; margin: 0; text-align: center; }
+    header, footer { background: #222; color: #fff; text-align: center; padding: 15px; }
+    .container { max-width: 800px; margin: 20px auto; padding: 0 15px; }
+    .imagem-dia img { max-width: 100%; border-radius: 5px; box-shadow: 0 0 5px rgba(0,0,0,0.2); margin-top: 10px; }
+    .ads { margin: 20px 0; text-align: center; }
+    .jogo { background: #fff; padding: 20px; border-radius: 5px; box-shadow: 0 0 5px rgba(0,0,0,0.1); margin: 20px 0; }
+    #botaoClique { padding: 15px 30px; font-size: 18px; background: #28a745; color: #fff; border: none; border-radius: 5px; cursor: pointer; }
+    #botaoClique:hover { background: #218838; }
+    .politica, .contato { font-size: 14px; color: #ccc; margin-top: 10px; }
+    .politica a, .contato a { color: #ccc; text-decoration: underline; }
+</style>
+
 </head>
-<body>
-
-<header>
-    <h1>Gaffber Notícias Diárias</h1>
-    <p>Informações, atualizações e opinião independente diretamente para você.</p>
-</header>
-
-<div class="container">
-
-    <div class="imagem-dia">
-        <h2>Imagem do Dia</h2>
-        <img id="imagemAleatoria" src="" alt="Imagem do Dia">
-        <p style="font-size: 14px; color: #666;">Fonte: Unsplash (Imagens públicas e gratuitas)</p>
-    </div>
-
-    <div class="ads">
-        <h2>Publicidade</h2>
-        <ins class="adsbygoogle"
-            style="display:block; height:250px;"
-            data-ad-client="ca-pub-3940256099942544"
-            data-ad-slot="3986624511"
-            data-ad-format="auto"
-            data-full-width-responsive="true"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-    </div>
-
-    <h2>Últimas Notícias & Artigos</h2>
-    <div id="noticias">
-        <article>
-            <h2>Inovação Tecnológica no Brasil</h2>
-            <p>01/07/2025</p>
-            <p>O cenário tecnológico brasileiro segue crescendo com novos projetos e iniciativas de desenvolvedores independentes como a Gaffber.</p>
-        </article>
-
-        <article>
-            <h2>Dicas de Segurança Digital</h2>
-            <p>01/07/2025</p>
-            <p>Confira as principais dicas para proteger suas contas e dados pessoais na internet de forma prática e segura.</p>
-        </article>
-
-        <article>
-            <h2>Mercado de Desenvolvimento Web</h2>
-            <p>01/07/2025</p>
-            <p>O desenvolvimento web se consolida como uma das áreas mais promissoras, oferecendo oportunidades tanto para empresas quanto para freelancers.</p>
-        </article>
-    </div>
-
+<body><header>
+    <h1>Gaffber</h1>
+    <p>Imagem do Dia e Jogo Interativo</p>
+</header><div class="container"><div class="imagem-dia">
+    <h2>Imagem do Dia</h2>
+    <img id="imagemAleatoria" src="" alt="Imagem do Dia">
+    <p style="font-size: 14px; color: #666;">Fonte: Unsplash (Imagens públicas e gratuitas)</p>
 </div>
 
-<footer>
+<div class="ads">
+    <h2>Publicidade</h2>
+    <ins class="adsbygoogle"
+        style="display:block; height:250px;"
+        data-ad-client="ca-pub-3940256099942544"
+        data-ad-slot="3986624511"
+        data-ad-format="auto"
+        data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<div class="jogo">
+    <h2>Jogo de Reflexo</h2>
+    <p>Clique no botão assim que ele mudar de cor!</p>
+    <button id="botaoClique" disabled>Espere...</button>
+    <p id="resultado"></p>
+</div>
+
+</div><footer>
     &copy; 2025 Gaffber. Todos os direitos reservados.<br>
     <div class="politica">
         <a href="#" onclick="alert('Esta é uma política de privacidade modelo. Substitua pelo conteúdo real antes de enviar para o AdSense.'); return false;">Política de Privacidade</a>
@@ -78,13 +54,41 @@
     <div class="contato">
         Contato: <a href="mailto:contato@gaffber.com">contato@gaffber.com</a>
     </div>
-</footer>
-
-<script>
+</footer><script>
     // Carrega imagem aleatória da Unsplash
     const img = document.getElementById('imagemAleatoria');
     img.src = 'https://source.unsplash.com/800x400/?nature,technology,city';
-</script>
 
-</body>
+    // Jogo de Reflexo
+    const botao = document.getElementById('botaoClique');
+    const resultado = document.getElementById('resultado');
+    let tempoInicio;
+
+    function iniciarJogo() {
+        resultado.textContent = '';
+        botao.textContent = 'Espere...';
+        botao.disabled = true;
+        botao.style.backgroundColor = '#28a745';
+
+        const tempoEspera = Math.random() * 3000 + 2000; // Entre 2s e 5s
+        setTimeout(() => {
+            botao.textContent = 'Clique agora!';
+            botao.disabled = false;
+            botao.style.backgroundColor = '#007bff';
+            tempoInicio = Date.now();
+        }, tempoEspera);
+    }
+
+    botao.addEventListener('click', () => {
+        if (botao.disabled) return;
+        const tempoReacao = Date.now() - tempoInicio;
+        resultado.textContent = `Seu tempo de reação: ${tempoReacao} ms.`;
+        botao.textContent = 'Jogar novamente';
+        botao.disabled = false;
+        botao.style.backgroundColor = '#28a745';
+        botao.onclick = iniciarJogo;
+    });
+
+    iniciarJogo();
+</script></body>
 </html>
