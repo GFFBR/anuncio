@@ -1,118 +1,22 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<title>Gaffber RPG Exploração Infinita</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body{margin:0;padding:0;background:#000;color:#fff;overflow:hidden;font-family:Arial;}
-#ui{position:absolute;top:10px;left:10px;background:rgba(0,0,0,0.7);padding:10px;border-radius:5px;z-index:5;}
-#ui span{display:block;margin:3px 0;}
-#msg{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,0.8);padding:15px;border:1px solid #fff;display:none;z-index:6;}
-canvas{background:#111;display:block;margin:0 auto;border:2px solid #333;}
-#controles{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);z-index:4;}
-.btn{background:#444;color:#fff;border:none;margin:5px;padding:10px 15px;font-size:18px;border-radius:5px;}
-</style>
+  <meta charset="UTF-8">
+  <title>Mandelbrot + Jogo da Vida Interativo</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: black;
+    }
+    canvas {
+      display: block;
+    }
+  </style>
 </head>
 <body>
-
-<div id="ui">
-  <span>Vida: <b id="vida">100</b></span>
-  <span>Nível: <b id="nivel">1</b></span>
-  <span>Itens: <b id="itens">0</b></span>
-  <span>Missões: <b id="missoes">0</b></span>
-</div>
-<div id="msg"></div>
-<canvas id="game" width="800" height="600"></canvas>
-
-<div id="controles">
-  <button class="btn" onclick="mover('cima')">⬆️</button><br>
-  <button class="btn" onclick="mover('esq')">⬅️</button>
-  <button class="btn" onclick="mover('baixo')">⬇️</button>
-  <button class="btn" onclick="mover('dir')">➡️</button>
-</div>
-
-<script>
-const c=document.getElementById('game'),ctx=c.getContext('2d'),s=40;
-let map={},keys={},player={x:0,y:0,vida:100,exp:0,nivel:1,itens:0,missoes:0},seed=Math.random()*99999;
-
-function ruido(x,y){return Math.abs(Math.sin(x*12.9898+y*78.233+seed))%1;}
-
-function gerar(cx,cy){
-  for(let y=cy-10;y<cy+10;y++)
-    for(let x=cx-12;x<cx+12;x++){
-      const k=`${x},${y}`;
-      if(!(k in map)){
-        let r=ruido(x,y);
-        map[k]=r<.05?'monstro':r<.1?'item':r<.12?'missao':'chao';
-      }
-    }
-}
-
-function desenhar(){
-  ctx.clearRect(0,0,c.width,c.height);
-  gerar(player.x,player.y);
-  for(let y=-10;y<10;y++)
-    for(let x=-12;x<12;x++){
-      const tx=player.x+x,ty=player.y+y,k=`${tx},${ty}`,px=(x+12)*s,py=(y+10)*s;
-      ctx.fillStyle='#333';
-      ctx.fillRect(px,py,s,s);
-      if(map[k]==='item'){ctx.fillStyle='gold';ctx.beginPath();ctx.arc(px+s/2,py+s/2,8,0,Math.PI*2);ctx.fill();}
-      else if(map[k]==='monstro'){ctx.fillStyle='red';ctx.fillRect(px+10,py+10,20,20);}
-      else if(map[k]==='missao'){ctx.fillStyle='lime';ctx.fillRect(px+12,py+12,16,16);}
-      ctx.strokeStyle='#555';ctx.strokeRect(px,py,s,s);
-    }
-  ctx.fillStyle='cyan';
-  ctx.fillRect(c.width/2-s/2,c.height/2-s/2,s,s);
-}
-
-function logica(){
-  if(keys['ArrowUp']||keys['w'])andar(0,-1);
-  if(keys['ArrowDown']||keys['s'])andar(0,1);
-  if(keys['ArrowLeft']||keys['a'])andar(-1,0);
-  if(keys['ArrowRight']||keys['d'])andar(1,0);
-}
-
-function andar(dx,dy){
-  player.x+=dx;player.y+=dy;
-  const k=`${player.x},${player.y}`;
-  if(map[k]==='item'){player.itens++;map[k]='chao';}
-  if(map[k]==='monstro'){player.vida-=20;map[k]='chao';if(player.vida<=0)morte();}
-  if(map[k]==='missao'){player.missoes++;player.exp+=50;player.nivel=Math.floor(player.exp/100)+1;map[k]='chao';mensagem('Missão concluída! +50 XP');}
-}
-
-function mensagem(txt){
-  const m=document.getElementById('msg');
-  m.innerText=txt;m.style.display='block';
-  setTimeout(()=>m.style.display='none',1500);
-}
-
-function morte(){
-  mensagem('Você morreu! Reiniciando...');
-  player={x:0,y:0,vida:100,exp:0,nivel:1,itens:0,missoes:0};
-  map={};
-}
-
-function mover(dir){
-  if(dir==='cima')andar(0,-1);
-  if(dir==='baixo')andar(0,1);
-  if(dir==='esq')andar(-1,0);
-  if(dir==='dir')andar(1,0);
-}
-
-function loop(){
-  logica();desenhar();
-  document.getElementById('vida').innerText=player.vida;
-  document.getElementById('nivel').innerText=player.nivel;
-  document.getElementById('itens').innerText=player.itens;
-  document.getElementById('missoes').innerText=player.missoes;
-  requestAnimationFrame(loop);
-}
-
-document.addEventListener('keydown',e=>keys[e.key]=true);
-document.addEventListener('keyup',e=>keys[e.key]=false);
-loop();
-</script>
+  <canvas id="canvas"></canvas>
+  <script src="main.js"></script>
 </body>
 </html>
