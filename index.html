@@ -1,27 +1,142 @@
-<!DOCTYPE html><html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <title>Gaffber RPG Infinito</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-body{margin:0;padding:0;background:#000;color:#fff;font-family:Arial, sans-serif;overflow:hidden}#ui{position:absolute;top:10px;left:10px;background:rgba(0,0,0,0.7);padding:10px;border-radius:5px;z-index:2}#ui span{display:block;margin:2px 0}canvas{background:#111;display:block;margin:0 auto;border:2px solid #333}#msg{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,0.8);padding:20px;display:none}
+body { margin: 0; padding: 0; background: #000; color: #fff; overflow: hidden; font-family: Arial; }
+#ui { position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); padding: 10px; border-radius: 5px; }
+#ui span { display: block; margin: 3px 0; }
+#msg { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); background: rgba(0,0,0,0.8); padding: 15px; border: 1px solid #fff; display: none; z-index: 3; }
+canvas { background: #111; display: block; margin: 0 auto; border: 2px solid #333; }
 </style>
 </head>
 <body>
-<div id="ui"><span>Vida: <b id="vida">100</b></span><span>Nível: <b id="nivel">1</b></span><span>Itens: <b id="itens">0</b></span><span>Missões: <b id="missoes">0</b></span></div>
+
+<div id="ui">
+  <span>Vida: <b id="vida">100</b></span>
+  <span>Nível: <b id="nivel">1</b></span>
+  <span>Itens: <b id="itens">0</b></span>
+  <span>Missões concluídas: <b id="missoes">0</b></span>
+</div>
 <div id="msg"></div>
-<canvas id="game" width="900" height="600"></canvas>
+<canvas id="game" width="800" height="600"></canvas>
+
 <script>
-const c=document.getElementById('game'),ctx=c.getContext('2d'),s=40,map={},p={x:0,y:0,hp:100,lv:1,it:0,ms:0,exp:0},k={},seed=Math.random()*9999,quests=[];let camX=0,camY=0;
-const ru=(x,y)=>(Math.abs(Math.sin(x*12.9+y*78.2+seed)))%1;
-function genMap(cx,cy){for(let y=cy-10;y<cy+10;y++)for(let x=cx-12;x<cx+12;x++){let k=`${x},${y}`;if(!(k in map)){let r=ru(x,y);map[k]=r<.05?'mob':r<.1?'item':r<.12?'quest':'floor'}}}
-function draw(){ctx.clearRect(0,0,c.width,c.height);genMap(p.x,p.y);for(let y=-10;y<10;y++)for(let x=-12;x<12;x++){let tx=p.x+x,ty=p.y+y,k=`${tx},${ty}`,px=(x+12)*s-camX,py=(y+10)*s-camY;ctx.fillStyle=map[k]==='floor'?'#222':map[k]==='item'?'#fd0':map[k]==='mob'?'#c00':map[k]==='quest'?'#0c0':'#333';ctx.fillRect(px,py,s,s);ctx.strokeStyle='#333';ctx.strokeRect(px,py,s,s)}ctx.fillStyle='#0ff';ctx.fillRect(c.width/2-s/4,c.height/2-s/4,s/2,s/2)}
-function logic(){if(k['ArrowUp'])p.y--;if(k['ArrowDown'])p.y++;if(k['ArrowLeft'])p.x--;if(k['ArrowRight'])p.x++;let key=`${p.x},${p.y}`;if(map[key]==='item'){p.it++;map[key]='floor';if(p.it%5===0)spawnQuest()}if(map[key]==='mob'){p.hp-=10;map[key]='floor';if(p.hp<=0)reset()}if(map[key]==='quest'){p.ms++;p.exp+=50;p.lv=Math.floor(p.exp/100)+1;map[key]='floor';showMsg('Missão Completa! +50XP')}camX=0;camY=0}
-function spawnQuest(){let dx=Math.floor(p.x+Math.random()*20-10),dy=Math.floor(p.y+Math.random()*20-10);map[`${dx},${dy}`]='quest'}
-function showMsg(t){let m=document.getElementById('msg');m.innerText=t;m.style.display='block';setTimeout(()=>m.style.display='none',1500)}
-function reset(){p.x=0;p.y=0;p.hp=100;p.it=0;p.ms=0;p.exp=0;p.lv=1;map={}}
-function loop(){logic();draw();document.getElementById('vida').innerText=p.hp;document.getElementById('nivel').innerText=p.lv;document.getElementById('itens').innerText=p.it;document.getElementById('missoes').innerText=p.ms;requestAnimationFrame(loop)}
-document.addEventListener('keydown',e=>k[e.key]=true);document.addEventListener('keyup',e=>k[e.key]=false);loop();
+const c = document.getElementById('game');
+const ctx = c.getContext('2d');
+const tileSize = 40;
+let map = {}, keys = {};
+let player = { x: 0, y: 0, vida: 100, exp: 0, nivel: 1, itens: 0, missoes: 0 };
+let seed = Math.random() * 99999;
+
+function noise(x, y) {
+  return Math.abs(Math.sin(x * 12.9898 + y * 78.233 + seed)) % 1;
+}
+
+function generate(cx, cy) {
+  for (let y = cy - 10; y < cy + 10; y++) {
+    for (let x = cx - 12; x < cx + 12; x++) {
+      const key = `${x},${y}`;
+      if (!(key in map)) {
+        let r = noise(x, y);
+        map[key] = r < 0.05 ? 'monstro' : r < 0.1 ? 'item' : r < 0.12 ? 'missao' : 'chao';
+      }
+    }
+  }
+}
+
+function draw() {
+  ctx.clearRect(0, 0, c.width, c.height);
+  generate(player.x, player.y);
+
+  for (let y = -10; y < 10; y++) {
+    for (let x = -12; x < 12; x++) {
+      let tx = player.x + x;
+      let ty = player.y + y;
+      const key = `${tx},${ty}`;
+      const px = (x + 12) * tileSize;
+      const py = (y + 10) * tileSize;
+
+      ctx.fillStyle = '#333';
+      ctx.fillRect(px, py, tileSize, tileSize);
+
+      if (map[key] === 'item') {
+        ctx.fillStyle = 'gold';
+        ctx.beginPath();
+        ctx.arc(px + tileSize/2, py + tileSize/2, 8, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      else if (map[key] === 'monstro') {
+        ctx.fillStyle = 'red';
+        ctx.fillRect(px + 10, py + 10, 20, 20);
+      }
+      else if (map[key] === 'missao') {
+        ctx.fillStyle = 'lime';
+        ctx.fillRect(px + 12, py + 12, 16, 16);
+      }
+
+      ctx.strokeStyle = '#555';
+      ctx.strokeRect(px, py, tileSize, tileSize);
+    }
+  }
+
+  // Jogador no centro
+  ctx.fillStyle = 'cyan';
+  ctx.fillRect(c.width/2 - tileSize/2, c.height/2 - tileSize/2, tileSize, tileSize);
+}
+
+function update() {
+  if (keys['ArrowUp'] || keys['w']) player.y--;
+  if (keys['ArrowDown'] || keys['s']) player.y++;
+  if (keys['ArrowLeft'] || keys['a']) player.x--;
+  if (keys['ArrowRight'] || keys['d']) player.x++;
+
+  const key = `${player.x},${player.y}`;
+  if (map[key] === 'item') {
+    player.itens++;
+    map[key] = 'chao';
+  } else if (map[key] === 'monstro') {
+    player.vida -= 20;
+    map[key] = 'chao';
+    if (player.vida <= 0) death();
+  } else if (map[key] === 'missao') {
+    player.missoes++;
+    player.exp += 50;
+    player.nivel = Math.floor(player.exp / 100) + 1;
+    map[key] = 'chao';
+    showMsg('Missão completa! +50 XP');
+  }
+}
+
+function showMsg(txt) {
+  const msg = document.getElementById('msg');
+  msg.innerText = txt;
+  msg.style.display = 'block';
+  setTimeout(() => msg.style.display = 'none', 1500);
+}
+
+function death() {
+  showMsg('Você morreu! Reiniciando...');
+  player = { x: 0, y: 0, vida: 100, exp: 0, nivel: 1, itens: 0, missoes: 0 };
+  map = {};
+}
+
+function gameLoop() {
+  update();
+  draw();
+  document.getElementById('vida').innerText = player.vida;
+  document.getElementById('nivel').innerText = player.nivel;
+  document.getElementById('itens').innerText = player.itens;
+  document.getElementById('missoes').innerText = player.missoes;
+  requestAnimationFrame(gameLoop);
+}
+
+document.addEventListener('keydown', e => keys[e.key] = true);
+document.addEventListener('keyup', e => keys[e.key] = false);
+
+gameLoop();
 </script>
 </body>
 </html>
