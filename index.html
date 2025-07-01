@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -6,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 body{margin:0;padding:0;background:#000;color:#fff;overflow:hidden;font-family:Arial;}
-#ui{position:absolute;top:10px;left:10px;background:rgba(0,0,0,0.7);padding:10px;border-radius:5px;}
+#ui{position:absolute;top:10px;left:10px;background:rgba(0,0,0,0.7);padding:10px;border-radius:5px;z-index:5;}
 #ui span{display:block;margin:3px 0;}
-#msg{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,0.8);padding:15px;border:1px solid #fff;display:none;z-index:3;}
+#msg{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,0.8);padding:15px;border:1px solid #fff;display:none;z-index:6;}
 canvas{background:#111;display:block;margin:0 auto;border:2px solid #333;}
 #controles{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);z-index:4;}
 .btn{background:#444;color:#fff;border:none;margin:5px;padding:10px 15px;font-size:18px;border-radius:5px;}
@@ -111,7 +112,6 @@ function loop(){
 
 document.addEventListener('keydown',e=>keys[e.key]=true);
 document.addEventListener('keyup',e=>keys[e.key]=false);
-
 loop();
 </script>
 </body>
