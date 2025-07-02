@@ -1,0 +1,44 @@
+/* Custom Styles for Gaffber */
+
+/* This uses the 'Inter' font family defined in the HTML head */
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+/* A subtle lift effect on hover for article cards */
+.hover-lift {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.hover-lift:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Tailwind CSS 'prose' class styling for long-form text like the privacy policy */
+.prose {
+    color: #374151; /* text-gray-700 */
+}
+
+.prose h1, .prose h2, .prose h3, .prose strong {
+    color: #111827; /* text-gray-900 */
+}
+
+.prose a {
+    color: #2563eb; /* text-blue-600 */
+    text-decoration: none;
+}
+
+.prose a:hover {
+    text-decoration: underline;
+}
+
+.prose ul {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+}
+
+.prose ul > li::marker {
+  color: #6b7280; /* text-gray-500 */
+}
+
