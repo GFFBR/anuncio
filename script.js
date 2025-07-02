@@ -18,12 +18,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const applyTheme = (theme) => {
         if (theme === 'dark') {
-            document.documentElement.classList.add('dark');
             document.documentElement.setAttribute('data-theme', 'dark');
             if (darkIcon) darkIcon.classList.remove('hidden');
             if (lightIcon) lightIcon.classList.add('hidden');
         } else {
-            document.documentElement.classList.remove('dark');
             document.documentElement.setAttribute('data-theme', 'light');
             if (darkIcon) darkIcon.classList.add('hidden');
             if (lightIcon) lightIcon.classList.remove('hidden');
@@ -35,13 +33,15 @@ document.addEventListener('DOMContentLoaded', function () {
         applyTheme(currentTheme);
 
         themeToggleButton.addEventListener('click', () => {
-            const newTheme = document.documentElement.classList.contains('dark') ? 'light' : 'dark';
+            const newTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
             localStorage.setItem('theme', newTheme);
             applyTheme(newTheme);
         });
     }
 
-    hljs.highlightAll();
+    if (typeof hljs !== 'undefined') {
+        hljs.highlightAll();
+    }
 
     document.querySelectorAll('pre code').forEach((block) => {
         const pre = block.parentNode;
