@@ -102,22 +102,17 @@
             </div>
         </section>
 
-        <!-- =============================== -->
-        <!-- NOVO: AdSense Ad Unit - Bottom -->
-        <!-- =============================== -->
+        <!-- AdSense Ad Unit - Bottom -->
         <div class="my-12 text-center">
             <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3940256099942544" data-ad-slot="3986624511" data-ad-format="auto" data-full-width-responsive="true"></ins>
             <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
         </div>
 
-        <!-- =============================== -->
-        <!-- NOVO: Pagination -->
-        <!-- =============================== -->
+        <!-- Pagination -->
         <nav class="flex justify-center items-center space-x-4 mt-16" aria-label="Paginação">
             <span class="pagination-disabled">&laquo; Anterior</span>
             <span class="pagination-active" aria-current="page">1</span>
             <a href="pagina2.html" class="pagination-link">2</a>
-            <!-- <a href="pagina3.html" class="pagination-link">3</a> -->
             <a href="pagina2.html" class="pagination-link">Próxima &raquo;</a>
         </nav>
 
@@ -143,9 +138,104 @@
         </button>
     </div>
 
-    <!-- Custom JavaScript -->
-    <script src="script.js"></script>
+    <!-- ================================================== -->
+    <!-- JAVASCRIPT EMBUTIDO PARA GARANTIR O FUNCIONAMENTO -->
+    <!-- ================================================== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
 
+            // --- Mobile Menu Toggle ---
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            // --- Dynamic Year in Footer ---
+            const yearSpan = document.getElementById('year');
+            if (yearSpan) {
+                yearSpan.textContent = new Date().getFullYear();
+            }
+
+            // --- Cookie Consent Banner ---
+            const cookieBanner = document.getElementById('cookie-consent-banner');
+            const acceptCookiesButton = document.getElementById('accept-cookies');
+
+            if (cookieBanner && acceptCookiesButton) {
+                if (!localStorage.getItem('cookie_consent')) {
+                    cookieBanner.classList.remove('hidden');
+                }
+                acceptCookiesButton.addEventListener('click', function() {
+                    localStorage.setItem('cookie_consent', 'true');
+                    cookieBanner.style.display = 'none';
+                });
+            }
+
+            // --- Phrase of the Day ---
+            const frases = [
+                "Grandes jornadas começam com pequenos passos.", "O conhecimento transforma realidades.", "Acredite no poder das suas ideias.", 
+                "A persistência supera o talento.", "Cada dia é uma nova chance de recomeçar.", "Não espere por oportunidades, crie-as.", 
+                "O fracasso é apenas um passo rumo ao sucesso.", "Coragem é agir apesar do medo.", "Pequenas ações diárias constroem grandes conquistas.", 
+                "A gratidão transforma o que temos em suficiente.", "O impossível só existe até alguém provar o contrário.", "Você é mais forte do que imagina.", 
+                "A disciplina é o caminho mais curto até o objetivo.", "Desafios são oportunidades disfarçadas.", "Não desista. Grandes coisas levam tempo.", 
+                "Acredite no processo, ele te transforma.", "Aprenda com os erros e siga em frente.", "Seja a mudança que você deseja ver no mundo.", 
+                "Você nunca saberá se não tentar.", "Não existe progresso sem desconforto.", "As melhores conquistas nascem da persistência.", 
+                "Se você pode sonhar, pode realizar.", "A vida recompensa quem não desiste.", "O medo limita, o conhecimento liberta.", 
+                "Confie no seu potencial, você é único.", "Não espere o momento perfeito, crie-o.", "A verdadeira liberdade está em aprender sempre.", 
+                "Sonhos grandes exigem esforços grandes.", "A mente focada vence as distrações.", "Você é responsável pelo seu próprio sucesso."
+            ];
+            const fraseElement = document.getElementById('frase');
+            if (fraseElement) {
+                fraseElement.innerText = frases[Math.floor(Math.random() * frases.length)];
+            }
+
+            // --- Fetch Latest News ---
+            const noticiasContainer = document.getElementById('noticias');
+            if (noticiasContainer) {
+                const rssUrl = 'https://g1.globo.com/dynamo/rss2.xml';
+                const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
+
+                fetch(apiUrl)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data.status === 'ok') {
+                            noticiasContainer.innerHTML = ''; // Limpa a mensagem "carregando"
+                            const items = data.items.slice(0, 5); // Pega as 5 primeiras notícias
+
+                            items.forEach(item => {
+                                const title = item.title;
+                                const articleHTML = `
+                                    <article class="bg-white p-6 rounded-lg shadow-md hover-lift">
+                                        <h3 class="text-xl font-bold mb-2">${title}</h3>
+                                        <p class="text-sm text-gray-500 mb-3">Publicado em: ${new Date(item.pubDate).toLocaleDateString('pt-BR')}</p>
+                                        <p class="text-gray-700 mb-4">
+                                            <strong>Nossa Análise:</strong> Adicione aqui seu comentário original sobre a notícia para agregar valor, como exige o AdSense.
+                                        </p>
+                                        <a href="${item.link}" target="_blank" rel="noopener noreferrer" class="text-blue-600 font-semibold hover:underline">
+                                            Leia a Matéria Completa &rarr;
+                                        </a>
+                                    </article>
+                                `;
+                                noticiasContainer.innerHTML += articleHTML;
+                            });
+                        } else {
+                            throw new Error('A API de notícias retornou um erro.');
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Erro ao carregar notícias:", error);
+                        noticiasContainer.innerHTML = "<p class='text-center text-red-500'>Não foi possível carregar as notícias no momento. Por favor, tente novamente mais tarde.</p>";
+                    });
+            }
+        });
+    </script>
 </body>
 </html>
 
