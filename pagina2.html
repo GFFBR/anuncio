@@ -16,7 +16,7 @@
 </head>
 <body class="bg-gray-50 text-gray-800">
 
-    <!-- Header (Idêntico ao index.html para consistência) -->
+    <!-- Header -->
     <header class="bg-white shadow-md">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="index.html" class="text-2xl font-bold text-gray-900">Gaffber</a>
@@ -42,7 +42,9 @@
     <main class="container mx-auto px-6 py-8">
         <h1 class="text-4xl font-bold text-center mb-10">Artigos e Reflexões - Página 2</h1>
 
-        <!-- AdSense Ad Unit - Top -->
+        <!-- =============================== -->
+        <!-- AdSense Ad Unit - INÍCIO -->
+        <!-- =============================== -->
         <div class="my-8 text-center">
             <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3940256099942544" data-ad-slot="3986624511" data-ad-format="auto" data-full-width-responsive="true"></ins>
             <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -52,26 +54,26 @@
         <div class="space-y-12">
             <article class="content-article bg-blue-600 text-white rounded-lg shadow-lg p-8">
                 <h2 class="text-3xl font-bold mb-3">Seu Artigo Original #1 (Página 2)</h2>
-                <p>Aqui você começa a adicionar seu conteúdo massivo. Este é o primeiro artigo da segunda página. Mantenha a qualidade alta, com textos longos e bem escritos. O fundo azul com texto branco dá um ótimo destaque.</p>
+                <p>Aqui você começa a adicionar seu conteúdo massivo. Este é o primeiro artigo da segunda página. Mantenha a qualidade alta, com textos longos e bem escritos.</p>
             </article>
-            <article class="content-article bg-blue-600 text-white rounded-lg shadow-lg p-8">
-                <h2 class="text-3xl font-bold mb-3">Seu Artigo Original #2 (Página 2)</h2>
-                <p>Continue com o segundo artigo. Você pode falar sobre qualquer tema dentro do seu nicho: desenvolvimento pessoal, tecnologia, bem-estar, finanças, etc. O importante é ser original.</p>
-            </article>
-
-            <!-- AdSense Ad Unit - Middle -->
+            
+            <!-- =============================== -->
+            <!-- AdSense Ad Unit - MEIO -->
+            <!-- =============================== -->
             <div class="my-8 text-center">
                 <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3940256099942544" data-ad-slot="3986624511" data-ad-format="auto" data-full-width-responsive="true"></ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
             </div>
 
             <article class="content-article bg-blue-600 text-white rounded-lg shadow-lg p-8">
-                <h2 class="text-3xl font-bold mb-3">Seu Artigo Original #3 (Página 2)</h2>
+                <h2 class="text-3xl font-bold mb-3">Seu Artigo Original #2 (Página 2)</h2>
                 <p>Mais um espaço para seu conteúdo. Lembre-se que o AdSense valoriza páginas com muito texto útil. Não tenha medo de escrever artigos com 500, 800 ou até mais de 1000 palavras.</p>
             </article>
         </div>
 
-        <!-- AdSense Ad Unit - Bottom -->
+        <!-- =============================== -->
+        <!-- AdSense Ad Unit - FIM -->
+        <!-- =============================== -->
         <div class="my-12 text-center">
             <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3940256099942544" data-ad-slot="3986624511" data-ad-format="auto" data-full-width-responsive="true"></ins>
             <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -86,7 +88,7 @@
         </nav>
     </main>
 
-    <!-- Footer (Idêntico ao index.html) -->
+    <!-- Footer -->
     <footer class="bg-gray-800 text-white mt-12">
         <div class="container mx-auto px-6 py-8 text-center">
             <p>&copy; <span id="year"></span> Gaffber. Todos os direitos reservados.</p>
@@ -101,20 +103,13 @@
     <!-- Script Básico para esta página -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // --- Mobile Menu Toggle ---
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
             if (mobileMenuButton && mobileMenu) {
-                mobileMenuButton.addEventListener('click', function() {
-                    mobileMenu.classList.toggle('hidden');
-                });
+                mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
             }
-
-            // --- Dynamic Year in Footer ---
             const yearSpan = document.getElementById('year');
-            if (yearSpan) {
-                yearSpan.textContent = new Date().getFullYear();
-            }
+            if (yearSpan) yearSpan.textContent = new Date().getFullYear();
         });
     </script>
 </body>
