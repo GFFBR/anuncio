@@ -54,3 +54,27 @@
     top: 6rem;
 }
 
+.post-card {
+    @apply bg-white p-6 rounded-lg shadow-md transition-shadow duration-300;
+}
+
+.post-card:hover {
+    @apply shadow-xl;
+}
+
+.post-title {
+    @apply text-2xl font-bold text-gray-900 hover:text-blue-600 transition-colors duration-300;
+}
+
+.post-meta {
+    @apply text-sm text-gray-500 mb-4;
+}
+
+.post-excerpt {
+    @apply text-gray-700 mb-4;
+}
+
+.read-more-btn {
+    @apply inline-block text-blue-600 font-semibold hover:underline;
+}
+
