@@ -5,27 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sobre Nós - Gaffber</title>
     <meta name="description" content="Saiba mais sobre a missão do Gaffber em fornecer conteúdo inspirador e notícias relevantes de forma acessível e transparente.">
-    
-    
+    <link rel="canonical" href="https://GFFBR.github.io/sobre.html">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-    
-    
     <script src="https://cdn.tailwindcss.com"></script>
-
-    
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-gray-50 text-gray-800">
-
-    
     <header class="bg-white shadow-md">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="index.html" class="text-2xl font-bold text-gray-900">Gaffber</a>
             <div class="hidden md:flex space-x-6">
                 <a href="index.html" class="text-gray-600 hover:text-blue-600">Início</a>
-                <a href="sobre.html" class="text-gray-600 hover:text-blue-600">Sobre Nós</a>
+                <a href="sobre.html" class="text-gray-600 hover:text-blue-600 nav-active">Sobre Nós</a>
                 <a href="contato.html" class="text-gray-600 hover:text-blue-600">Contato</a>
                 <a href="politica.html" class="text-gray-600 hover:text-blue-600">Política de Privacidade</a>
             </div>
@@ -33,16 +27,13 @@
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
             </button>
         </nav>
-        
         <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
             <a href="index.html" class="block py-2 text-gray-600 hover:text-blue-600">Início</a>
-            <a href="sobre.html" class="block py-2 text-gray-600 hover:text-blue-600">Sobre Nós</a>
+            <a href="sobre.html" class="block py-2 text-gray-600 hover:text-blue-600 nav-active">Sobre Nós</a>
             <a href="contato.html" class="block py-2 text-gray-600 hover:text-blue-600">Contato</a>
             <a href="politica.html" class="block py-2 text-gray-600 hover:text-blue-600">Política de Privacidade</a>
         </div>
     </header>
-
-    
     <main class="container mx-auto px-6 py-12">
         <div class="bg-white p-8 rounded-lg shadow-md max-w-3xl mx-auto">
             <h1 class="text-3xl font-bold text-center mb-6">Sobre o Gaffber</h1>
@@ -51,13 +42,13 @@
                 <p>Acreditamos que o conteúdo de qualidade pode transformar o dia de uma pessoa. Por isso, nossa curadoria busca trazer frases que motivam, artigos que promovem o bem-estar e notícias apresentadas de forma clara e objetiva.</p>
                 <h2 class="text-2xl font-bold pt-4">Nossa Missão</h2>
                 <p>Nossa missão é simples: fornecer conteúdo relevante e de alta qualidade que agregue valor à vida dos nossos leitores. Queremos inspirar, informar e promover um ambiente digital mais saudável e construtivo.</p>
+                <h2 class="text-2xl font-bold pt-4">O Criador</h2>
+                <p>O Gaffber é um projeto pessoal criado por um entusiasta de desenvolvimento pessoal e tecnologia. Com anos de estudo e prática na área, meu objetivo é compartilhar conhecimentos e reflexões que possam inspirar e ajudar os leitores em suas próprias jornadas.</p>
                 <h2 class="text-2xl font-bold pt-4">Transparência</h2>
                 <p>Este projeto é mantido de forma independente e monetizado através de publicidade, como o Google AdSense. Isso nos ajuda a cobrir os custos operacionais e a continuar produzindo conteúdo de qualidade. Estamos comprometidos com a transparência total sobre como nosso site opera. Para mais detalhes, consulte nossa <a href="politica.html" class="text-blue-600 hover:underline">Política de Privacidade</a>.</p>
             </div>
         </div>
     </main>
-
-    
     <footer class="bg-gray-800 text-white mt-12">
         <div class="container mx-auto px-6 py-8 text-center">
             <p>&copy; <span id="year"></span> Gaffber. Todos os direitos reservados.</p>
@@ -68,15 +59,12 @@
             </div>
         </div>
     </footer>
-    
     <script>
-        
         document.getElementById('mobile-menu-button').addEventListener('click', function() {
             document.getElementById('mobile-menu').classList.toggle('hidden');
         });
         document.getElementById('year').textContent = new Date().getFullYear();
     </script>
-
 </body>
 </html>
 
