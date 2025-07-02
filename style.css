@@ -1,80 +1,137 @@
-.content-article {
-    font-family: 'Lora', serif;
-    line-height: 1.7;
-    font-size: 1.125rem;
+:root {
+    --bg-color: #f9fafb;
+    --text-color: #1f2937;
+    --card-bg-color: #ffffff;
+    --header-bg-color: rgba(255, 255, 255, 0.8);
+    --border-color: #e5e7eb;
+    --link-color: #2563eb;
+    --link-hover-color: #1d4ed8;
+    --meta-color: #6b7280;
 }
 
-.content-article h2 {
+[data-theme="dark"] {
+    --bg-color: #111827;
+    --text-color: #d1d5db;
+    --card-bg-color: #1f2937;
+    --header-bg-color: rgba(31, 41, 55, 0.8);
+    --border-color: #374151;
+    --link-color: #60a5fa;
+    --link-hover-color: #93c5fd;
+    --meta-color: #9ca3af;
+}
+
+body {
     font-family: 'Inter', sans-serif;
-    line-height: 1.2;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
 }
 
-.pagination-link {
-    @apply px-4 py-2 text-gray-700 bg-white rounded-md shadow-sm hover:bg-blue-500 hover:text-white transition-colors;
+header {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background-color: var(--header-bg-color);
+    border-bottom: 1px solid var(--border-color);
 }
 
-.pagination-active {
-    @apply px-4 py-2 text-white bg-blue-600 font-bold rounded-md shadow-sm;
+.nav-link {
+    @apply text-gray-600 hover:text-blue-600;
 }
 
-.pagination-disabled {
-    @apply px-4 py-2 text-gray-400 bg-gray-200 rounded-md shadow-sm cursor-not-allowed;
+[data-theme="dark"] .nav-link {
+    @apply text-gray-300 hover:text-blue-400;
 }
 
 .nav-active {
-    color: #2563eb;
+    color: var(--link-color);
     font-weight: 700;
 }
 
-.ad-label {
-    display: block;
-    text-align: center;
-    font-size: 0.75rem;
-    color: #9ca3af;
-    margin-bottom: 0.5rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-
-.main-grid-layout {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-}
-
-@media (min-width: 1024px) {
-    .main-grid-layout {
-        grid-template-columns: 2.5fr 1fr;
-    }
-}
-
-.sidebar-sticky {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 6rem;
-}
-
 .post-card {
-    @apply bg-white p-6 rounded-lg shadow-md transition-shadow duration-300;
+    background-color: var(--card-bg-color);
+    border: 1px solid var(--border-color);
+    @apply p-6 rounded-lg transition-shadow duration-300;
 }
 
 .post-card:hover {
     @apply shadow-xl;
 }
 
-.post-title {
-    @apply text-2xl font-bold text-gray-900 hover:text-blue-600 transition-colors duration-300;
+.post-title a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.post-title a:hover {
+    color: var(--link-color);
 }
 
 .post-meta {
-    @apply text-sm text-gray-500 mb-4;
-}
-
-.post-excerpt {
-    @apply text-gray-700 mb-4;
+    color: var(--meta-color);
 }
 
 .read-more-btn {
-    @apply inline-block text-blue-600 font-semibold hover:underline;
+    color: var(--link-color);
+    transition: color 0.3s;
+}
+
+.read-more-btn:hover {
+    color: var(--link-hover-color);
+}
+
+.content-article {
+    font-family: 'Lora', serif;
+    line-height: 1.8;
+    font-size: 1.125rem;
+    background-color: var(--card-bg-color);
+}
+
+.content-article h1, .content-article h2, .content-article h3 {
+    font-family: 'Inter', sans-serif;
+    color: var(--text-color);
+}
+
+.content-article a {
+    color: var(--link-color);
+    text-decoration: underline;
+}
+
+.content-article pre {
+    position: relative;
+    @apply rounded-lg p-4;
+}
+
+.copy-code-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background-color: #4b5563;
+    color: white;
+    border: none;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    font-size: 0.8rem;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.content-article pre:hover .copy-code-btn {
+    opacity: 1;
+}
+
+.copy-code-btn:hover {
+    background-color: #6b7280;
+}
+
+.ad-label {
+    display: block;
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--meta-color);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
