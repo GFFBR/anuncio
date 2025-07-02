@@ -9,36 +9,41 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Lora:ital,wght@0,400;0,700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3940256099942544" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-gray-100 text-gray-800">
-    <header class="bg-white shadow-md sticky top-0 z-50">
+<body class="bg-gray-100 dark:bg-gray-900">
+    <header class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm sticky top-0 z-50 border-b border-gray-200 dark:border-gray-700">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-bold text-gray-900">Gaffber</a>
-            <div class="hidden md:flex space-x-6">
-                <a href="index.html" class="text-gray-600 hover:text-blue-600 nav-active">Início</a>
-                <a href="sobre.html" class="text-gray-600 hover:text-blue-600">Sobre Nós</a>
-                <a href="contato.html" class="text-gray-600 hover:text-blue-600">Contato</a>
-                <a href="politica.html" class="text-gray-600 hover:text-blue-600">Política de Privacidade</a>
+            <a href="index.html" class="text-2xl font-bold text-gray-900 dark:text-white">Gaffber</a>
+            <div class="flex items-center space-x-6">
+                <div class="hidden md:flex space-x-6">
+                    <a href="index.html" class="nav-link nav-active">Início</a>
+                    <a href="sobre.html" class="nav-link">Sobre Nós</a>
+                    <a href="contato.html" class="nav-link">Contato</a>
+                </div>
+                <button id="theme-toggle" class="text-gray-600 dark:text-gray-300">
+                    <svg id="theme-toggle-dark-icon" class="hidden h-6 w-6" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                    <svg id="theme-toggle-light-icon" class="hidden h-6 w-6" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                </button>
+                <button id="mobile-menu-button" class="md:hidden text-gray-900 dark:text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
             </div>
-            <button id="mobile-menu-button" class="md:hidden">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-            </button>
         </nav>
         <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
-            <a href="index.html" class="block py-2 text-gray-600 hover:text-blue-600 nav-active">Início</a>
-            <a href="sobre.html" class="block py-2 text-gray-600 hover:text-blue-600">Sobre Nós</a>
-            <a href="contato.html" class="block py-2 text-gray-600 hover:text-blue-600">Contato</a>
-            <a href="politica.html" class="block py-2 text-gray-600 hover:text-blue-600">Política de Privacidade</a>
+            <a href="index.html" class="block py-2 nav-link nav-active">Início</a>
+            <a href="sobre.html" class="block py-2 nav-link">Sobre Nós</a>
+            <a href="contato.html" class="block py-2 nav-link">Contato</a>
         </div>
     </header>
     <main class="container mx-auto px-6 py-8">
         <section class="text-center mb-16">
-            <h1 class="text-5xl font-extrabold text-gray-900 mb-4">Blog Gaffber</h1>
-            <p class="text-lg text-gray-600 max-w-2xl mx-auto">Artigos, tutoriais e reflexões sobre desenvolvimento pessoal, bem-estar e tecnologia.</p>
+            <h1 class="text-5xl font-extrabold text-gray-900 dark:text-white mb-4">Blog Gaffber</h1>
+            <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">Artigos, tutoriais e reflexões sobre desenvolvimento pessoal, bem-estar e tecnologia.</p>
         </section>
         <div class="my-8 text-center">
             <span class="ad-label">Publicidade</span>
@@ -47,21 +52,21 @@
         </div>
         <div class="space-y-12">
             <article class="post-card">
-                <div class="post-meta">02 de Julho de 2025</div>
+                <p class="post-meta">02 de Julho de 2025</p>
                 <h2 class="post-title"><a href="como-se-motivar.html">Como se Motivar Todos os Dias: Um Guia Prático</a></h2>
-                <p class="post-excerpt">Manter a motivação é um desafio, mas pequenas atitudes transformam sua rotina. Neste artigo, exploramos técnicas baseadas na psicologia para construir uma fonte de motivação interna e duradoura. Comece com gratidão, defina metas realistas e comemore cada vitória.</p>
+                <p class="post-excerpt">Manter a motivação é um desafio, mas pequenas atitudes transformam sua rotina. Neste artigo, exploramos técnicas baseadas na psicologia para construir uma fonte de motivação interna e duradoura.</p>
                 <a href="como-se-motivar.html" class="read-more-btn">Leia Mais &rarr;</a>
             </article>
             <article class="post-card">
-                <div class="post-meta">01 de Julho de 2025</div>
+                <p class="post-meta">01 de Julho de 2025</p>
                 <h2 class="post-title"><a href="bem-estar-digital.html">Bem-Estar no Mundo Digital: Encontrando o Equilíbrio</a></h2>
-                <p class="post-excerpt">Viver conectado é essencial, mas o equilíbrio é fundamental para a saúde mental. Discutimos estratégias para usar a tecnologia a seu favor, evitando o burnout e a sobrecarga de informação. Reserve momentos offline, pratique atividades físicas e priorize o sono.</p>
+                <p class="post-excerpt">Viver conectado é essencial, mas o equilíbrio é fundamental para a saúde mental. Discutimos estratégias para usar a tecnologia a seu favor, evitando o burnout e a sobrecarga de informação.</p>
                 <a href="bem-estar-digital.html" class="read-more-btn">Leia Mais &rarr;</a>
             </article>
             <article class="post-card">
-                <div class="post-meta">30 de Junho de 2025</div>
+                <p class="post-meta">30 de Junho de 2025</p>
                 <h2 class="post-title"><a href="desenvolvendo-resiliencia.html">Desenvolvendo Resiliência em Tempos Difíceis</a></h2>
-                <p class="post-excerpt">A resiliência é a chave para superar desafios e se adaptar a mudanças. Neste guia, apresentamos os pilares da resiliência e como você pode fortalecê-los no seu dia a dia para enfrentar adversidades com mais força e clareza mental.</p>
+                <p class="post-excerpt">A resiliência é a chave para superar desafios e se adaptar a mudanças. Neste guia, apresentamos os pilares da resiliência e como você pode fortalecê-los no seu dia a dia.</p>
                 <a href="desenvolvendo-resiliencia.html" class="read-more-btn">Leia Mais &rarr;</a>
             </article>
         </div>
@@ -70,32 +75,13 @@
             <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3940256099942544" data-ad-slot="3986624511" data-ad-format="auto" data-full-width-responsive="true"></ins>
             <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
         </div>
-        <nav class="flex justify-between items-center mt-16">
-            <a href="#" class="pagination-link">← Artigos Anteriores</a>
-            <a href="#" class="pagination-link">Próximos Artigos →</a>
-        </nav>
     </main>
-    <footer class="bg-gray-800 text-white mt-12">
-        <div class="container mx-auto px-6 py-8 text-center">
+    <footer class="border-t border-gray-200 dark:border-gray-700 mt-12">
+        <div class="container mx-auto px-6 py-8 text-center text-gray-500 dark:text-gray-400">
             <p>&copy; <span id="year"></span> Gaffber. Todos os direitos reservados.</p>
-            <div class="mt-4">
-                <a href="sobre.html" class="text-gray-400 hover:text-white mx-2">Sobre Nós</a> |
-                <a href="contato.html" class="text-gray-400 hover:text-white mx-2">Contato</a> |
-                <a href="politica.html" class="text-gray-400 hover:text-white mx-2">Política de Privacidade</a>
-            </div>
         </div>
     </footer>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            if (mobileMenuButton && mobileMenu) {
-                mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-            }
-            const yearSpan = document.getElementById('year');
-            if (yearSpan) yearSpan.textContent = new Date().getFullYear();
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
 
