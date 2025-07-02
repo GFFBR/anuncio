@@ -1,58 +1,139 @@
-<!DOCTYPE html><html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Gaffber - Conteúdo Inspirador e Notícias</title>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3940256099942544" crossorigin="anonymous"></script>
-<style>
-body {font-family: Arial, sans-serif; background: #f4f4f4; color: #333; margin: 0; padding: 0;}
-header, footer {background: #222; color: #fff; text-align: center; padding: 15px;}
-.container {max-width: 800px; margin: 20px auto; padding: 0 15px;}
-article {background: #fff; padding: 20px; margin-bottom: 20px; border-radius: 5px; box-shadow: 0 0 5px rgba(0,0,0,0.1);}
-h2 {margin-top: 0;}
-.ads {text-align: center; margin: 20px 0;}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaffber - Inspiração e Notícias para o seu Dia</title>
+    <meta name="description" content="Encontre inspiração diária com frases motivacionais e mantenha-se atualizado com as últimas notícias do Brasil e do mundo.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- AdSense Script -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3940256099942544" crossorigin="anonymous"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
-<header>
-  <h1>Gaffber - Frases, Notícias e Artigos Inspiradores</h1>
-  <p>Explore centenas de textos motivacionais, dicas de vida e atualizações diárias</p>
-</header>
-<div class="container"><!-- Conteúdo Extensivo com vários artigos e anúncios distribuídos --><script>
-const anuncios = `
-<div class="ads">
-  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3940256099942544" data-ad-slot="3986624511" data-ad-format="auto" data-full-width-responsive="true"></ins>
-  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>`;document.write(anuncios); </script>
+<body class="bg-gray-50 text-gray-800">
 
-<article>
-<h2>Bem-vindo ao Gaffber - O portal do conhecimento positivo</h2>
-<p>No Gaffber, você encontra uma vasta seleção de frases motivacionais, artigos originais sobre bem-estar, produtividade, desenvolvimento pessoal, saúde mental, além de atualizações do Brasil e do mundo. Nosso objetivo é inspirar, informar e motivar você diariamente.</p>
-</article><script>document.write(anuncios);</script><!-- Gerar múltiplos artigos grandes para rolagem intensa --><script>
-const artigos = [
-  {titulo:"Como Desenvolver uma Mentalidade Inabalável", conteudo:"Desenvolver resiliência emocional exige prática e consciência. Comece identificando padrões de pensamento negativos e substituindo-os por afirmações positivas. Situações desafiadoras são inevitáveis, mas sua reação a elas define seu sucesso."},
-  {titulo:"O Impacto da Gratidão na Saúde Mental", conteudo:"Diversos estudos comprovam que a prática diária da gratidão reduz sintomas de ansiedade e depressão. Anotar pelo menos 3 motivos para agradecer diariamente aumenta o bem-estar e fortalece relacionamentos interpessoais."},
-  {titulo:"Pequenos Hábitos Matinais para Transformar seu Dia", conteudo:"Acordar 15 minutos mais cedo, evitar o celular ao levantar e fazer uma breve meditação ou leitura positiva melhora significativamente o humor e a produtividade ao longo do dia."},
-  {titulo:"Como Superar o Medo de Fracassar", conteudo:"O fracasso faz parte do caminho de quem busca grandes conquistas. Aceitar o erro como etapa de aprendizado, manter o foco nos objetivos e buscar apoio emocional são estratégias eficazes para vencer o medo do fracasso."},
-  {titulo:"A Importância da Leitura Diária", conteudo:"Ler estimula o cérebro, amplia o vocabulário, fortalece o raciocínio e reduz o estresse. Reserve pelo menos 10 minutos por dia para um bom livro e perceba os benefícios acumulativos ao longo dos meses."}
-];
+    <!-- Header -->
+    <header class="bg-white shadow-md">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-gray-900">Gaffber</a>
+            <div class="hidden md:flex space-x-6">
+                <a href="index.html" class="text-gray-600 hover:text-blue-600">Início</a>
+                <a href="sobre.html" class="text-gray-600 hover:text-blue-600">Sobre Nós</a>
+                <a href="contato.html" class="text-gray-600 hover:text-blue-600">Contato</a>
+                <a href="politica.html" class="text-gray-600 hover:text-blue-600">Política de Privacidade</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+            <a href="index.html" class="block py-2 text-gray-600 hover:text-blue-600">Início</a>
+            <a href="sobre.html" class="block py-2 text-gray-600 hover:text-blue-600">Sobre Nós</a>
+            <a href="contato.html" class="block py-2 text-gray-600 hover:text-blue-600">Contato</a>
+            <a href="politica.html" class="block py-2 text-gray-600 hover:text-blue-600">Política de Privacidade</a>
+        </div>
+    </header>
 
-for(let i=0; i<50; i++){
-  artigos.forEach(a=>{
-    document.write(`
-      <article>
-      <h2>${a.titulo}</h2>
-      <p>${a.conteudo} Repetimos conteúdos extensos para que você possa explorar muito texto em nossa plataforma e garantir uma ótima experiência de leitura contínua, conforme as boas práticas de sites aprovados no AdSense. Aproveite para rolar bastante esta página e descobrir tudo que o Gaffber oferece.</p>
-      </article>
-    `);
-    if(Math.random()<0.4) document.write(anuncios);
-  });
-}
-</script><script>document.write(anuncios);</script><article>
-<h2>Conclusão: Conteúdo é o que move o mundo</h2>
-<p>O conhecimento é libertador, e aqui no Gaffber você encontra uma fonte inesgotável de inspiração, dicas práticas e informações úteis. Continue navegando, explorando e melhorando sua vida com conteúdo de qualidade.</p>
-</article><script>document.write(anuncios);</script><p style="font-size:12px; text-align:center;">© 2025 Gaffber - Todos os direitos reservados | <a href="politica.html" target="_blank">Política de Privacidade</a> | <a href="contato.html" target="_blank">Contato</a></p>
-</div>
-<footer>
-<p>Obrigado por visitar o Gaffber - Sua fonte diária de motivação e informação.</p>
-</footer></body>
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-8">
+
+        <!-- Hero Section -->
+        <section class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">Inspiração e Notícias</h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">Seu portal diário de frases motivacionais, bem-estar e as notícias mais importantes, com curadoria especial.</p>
+        </section>
+
+        <!-- Phrase of the Day -->
+        <section class="bg-blue-600 text-white rounded-lg shadow-lg p-8 mb-12 text-center">
+            <h2 class="text-2xl font-bold mb-4">Frase do Dia</h2>
+            <p id="frase" class="text-xl italic">"Carregando frase..."</p>
+        </section>
+
+        <!-- AdSense Display Ad Unit -->
+        <div class="my-8 text-center">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-3940256099942544"
+                 data-ad-slot="3986624511"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+
+        <!-- Content Grid -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <article class="bg-white p-6 rounded-lg shadow-md hover-lift">
+                <h3 class="text-xl font-bold mb-2">Como se Motivar Todos os Dias</h3>
+                <p class="text-gray-600">Manter a motivação é um desafio, mas pequenas atitudes transformam sua rotina. Comece com gratidão, defina metas realistas e comemore cada vitória. O progresso pessoal é único.</p>
+            </article>
+            <article class="bg-white p-6 rounded-lg shadow-md hover-lift">
+                <h3 class="text-xl font-bold mb-2">Bem-Estar no Mundo Digital</h3>
+                <p class="text-gray-600">Viver conectado é essencial, mas o equilíbrio é fundamental. Reserve momentos offline, pratique atividades físicas e priorize o sono para uma vida digital mais saudável.</p>
+            </article>
+            <article class="bg-white p-6 rounded-lg shadow-md hover-lift">
+                <h3 class="text-xl font-bold mb-2">Desenvolvendo Resiliência</h3>
+                <p class="text-gray-600">A resiliência é a chave para superar desafios. Aceite as dificuldades, busque apoio, pratique o autocuidado e veja cada obstáculo como uma oportunidade de aprendizado.</p>
+            </article>
+             <article class="bg-white p-6 rounded-lg shadow-md hover-lift">
+                <h3 class="text-xl font-bold mb-2">O Poder dos Pequenos Hábitos</h3>
+                <p class="text-gray-600">Grandes mudanças nascem de hábitos consistentes. Beber mais água, caminhar 10 minutos ou ler algumas páginas por dia cria um efeito acumulativo poderoso ao longo do tempo.</p>
+            </article>
+             <article class="bg-white p-6 rounded-lg shadow-md hover-lift">
+                <h3 class="text-xl font-bold mb-2">Dicas para um Dia Produtivo</h3>
+                <p class="text-gray-600">Comece o dia listando suas prioridades. Evite distrações digitais e reserve intervalos regulares para manter a mente focada. Produtividade é fazer melhor, não necessariamente mais.</p>
+            </article>
+             <article class="bg-white p-6 rounded-lg shadow-md hover-lift">
+                <h3 class="text-xl font-bold mb-2">Conteúdo Original é Rei</h3>
+                <p class="text-gray-600">O Google AdSense valoriza conteúdo único e de alta qualidade. Escreva suas próprias análises, tutoriais ou histórias para construir um público fiel e aumentar suas chances de aprovação.</p>
+            </article>
+        </div>
+
+        <!-- Latest News Section -->
+        <section class="mt-12">
+            <h2 class="text-3xl font-bold text-center mb-8">Últimas Notícias</h2>
+            <div id="noticias" class="space-y-6">
+                <p class="text-center text-gray-500">Carregando notícias...</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white mt-12">
+        <div class="container mx-auto px-6 py-8 text-center">
+            <p>&copy; <span id="year"></span> Gaffber. Todos os direitos reservados.</p>
+            <div class="mt-4">
+                <a href="sobre.html" class="text-gray-400 hover:text-white mx-2">Sobre Nós</a> |
+                <a href="contato.html" class="text-gray-400 hover:text-white mx-2">Contato</a> |
+                <a href="politica.html" class="text-gray-400 hover:text-white mx-2">Política de Privacidade</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-consent-banner" class="hidden fixed bottom-0 left-0 right-0 bg-gray-900 text-white p-4 flex-col sm:flex-row justify-between items-center z-50">
+        <p class="mb-2 sm:mb-0">Este site utiliza cookies para melhorar sua experiência. Ao continuar, você concorda com nossa <a href="politica.html" class="underline hover:text-blue-400">Política de Privacidade</a>.</p>
+        <button id="accept-cookies" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">
+            Entendi
+        </button>
+    </div>
+
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
+
+</body>
 </html>
+
