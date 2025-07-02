@@ -2,45 +2,110 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Política de Privacidade - Gaffber</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        body { font-family: Arial, sans-serif; background: #f4f4f4; color: #333; margin: 0; padding: 20px; }
-        header, footer { background: #222; color: #fff; text-align: center; padding: 15px; }
-        .container { max-width: 800px; margin: 20px auto; background: #fff; padding: 20px; border-radius: 5px; box-shadow: 0 0 5px rgba(0,0,0,0.1); }
-        h1, h2 { color: #222; }
-        a { color: #0066cc; }
-    </style>
+    <meta name="description" content="Entenda como o Gaffber coleta e utiliza dados para oferecer uma experiência personalizada e exibir anúncios relevantes, em conformidade com o Google AdSense.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="bg-gray-50 text-gray-800">
 
-<header>
-    <h1>Política de Privacidade</h1>
-</header>
+    <!-- Header -->
+    <header class="bg-white shadow-md">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-gray-900">Gaffber</a>
+            <div class="hidden md:flex space-x-6">
+                <a href="index.html" class="text-gray-600 hover:text-blue-600">Início</a>
+                <a href="sobre.html" class="text-gray-600 hover:text-blue-600">Sobre Nós</a>
+                <a href="contato.html" class="text-gray-600 hover:text-blue-600">Contato</a>
+                <a href="politica.html" class="text-gray-600 hover:text-blue-600">Política de Privacidade</a>
+            </div>
+             <button id="mobile-menu-button" class="md:hidden">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+            <a href="index.html" class="block py-2 text-gray-600 hover:text-blue-600">Início</a>
+            <a href="sobre.html" class="block py-2 text-gray-600 hover:text-blue-600">Sobre Nós</a>
+            <a href="contato.html" class="block py-2 text-gray-600 hover:text-blue-600">Contato</a>
+            <a href="politica.html" class="block py-2 text-gray-600 hover:text-blue-600">Política de Privacidade</a>
+        </div>
+    </header>
 
-<div class="container">
-    <p>Esta Política de Privacidade descreve como as informações são coletadas, usadas e protegidas pelo site <strong>Gaffber - Frases e Notícias</strong>.</p>
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-12">
+        <div class="bg-white p-8 rounded-lg shadow-md max-w-4xl mx-auto">
+            <h1 class="text-3xl font-bold text-center mb-6">Política de Privacidade</h1>
+            <div class="prose max-w-none">
+                <p><strong>Última atualização:</strong> 02 de Julho de 2025</p>
+                
+                <p>A sua privacidade é importante para nós. É política do <strong>Gaffber</strong> respeitar a sua privacidade em relação a qualquer informação sua que possamos coletar no site Gaffber.</p>
 
-    <h2>Coleta de Informações</h2>
-    <p>Não coletamos informações pessoais diretamente. No entanto, este site pode utilizar cookies e tecnologias de terceiros, como o Google AdSense, para exibir anúncios e analisar o tráfego.</p>
+                <h2>1. Coleta de Informações</h2>
+                <p>Não coletamos informações de identificação pessoal dos nossos visitantes de forma direta. O site pode ser navegado anonimamente.</p>
+                <p>No entanto, como muitos outros sites, utilizamos tecnologias de terceiros que podem coletar dados para melhorar a experiência do usuário e para fins de análise e publicidade. Essas tecnologias incluem:</p>
+                <ul>
+                    <li><strong>Cookies:</strong> Pequenos arquivos de texto que são armazenados no seu navegador para ajudar o site a fornecer uma experiência mais personalizada.</li>
+                    <li><strong>Dados de Log:</strong> Informações que o seu navegador envia automaticamente sempre que você visita nosso site, como seu endereço IP, tipo de navegador, páginas visitadas e outros dados estatísticos.</li>
+                </ul>
 
-    <h2>Google AdSense</h2>
-    <p>Utilizamos anúncios fornecidos pelo Google AdSense. O Google pode usar cookies para personalizar os anúncios exibidos com base em visitas anteriores ao site ou a outros sites.</p>
-    <p>Para mais informações sobre como o Google usa dados, visite: <a href="https://policies.google.com/technologies/ads?hl=pt-BR" target="_blank">Política de Privacidade do Google</a>.</p>
+                <h2>2. Uso de Cookies e Google AdSense</h2>
+                <p>Este site utiliza o <strong>Google AdSense</strong>, um serviço de publicidade fornecido pelo Google. Para exibir anúncios relevantes, o Google e seus parceiros usam cookies (como o cookie DoubleClick) para veicular anúncios com base nas visitas anteriores de um usuário ao nosso site ou a outros sites na Internet.</p>
+                <ul>
+                    <li>Fornecedores de terceiros, incluindo o Google, usam cookies para veicular anúncios com base nas visitas anteriores de um usuário ao seu website ou a outros websites.</li>
+                    <li>O uso de cookies de publicidade pelo Google permite que ele e seus parceiros veiculem anúncios para seus usuários com base na visita a seus sites e/ou a outros sites na Internet.</li>
+                    <li>Os usuários podem desativar a publicidade personalizada acessando as <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer">Configurações de anúncios</a> do Google. Como alternativa, os usuários podem desativar o uso de cookies de um fornecedor de terceiros para publicidade personalizada acessando <a href="http://www.aboutads.info/choices/" target="_blank" rel="noopener noreferrer">www.aboutads.info/choices</a>.</li>
+                </ul>
+                <p>Para mais informações sobre como o Google utiliza os dados, por favor, visite a <a href="https://policies.google.com/technologies/ads?hl=pt-BR" target="_blank" rel="noopener noreferrer">página de tecnologias de anúncios do Google</a>.</p>
+                
+                <h2>3. Controle de Cookies</h2>
+                <p>Você pode controlar e/ou deletar cookies como desejar. Você pode apagar todos os cookies que já estão no seu computador e pode configurar a maioria dos navegadores para impedir que eles sejam colocados. Se você fizer isso, no entanto, talvez tenha que ajustar manualmente algumas preferências toda vez que visitar um site, e alguns serviços e funcionalidades podem não funcionar.</p>
 
-    <h2>Cookies</h2>
-    <p>Cookies são pequenos arquivos armazenados no seu navegador. Você pode optar por desativá-los nas configurações do navegador, mas isso pode afetar a experiência no site.</p>
+                <h2>4. Links para Sites Externos</h2>
+                <p>O nosso site pode conter links para sites externos (por exemplo, portais de notícias) que não são operados por nós. Esteja ciente de que não temos controle sobre o conteúdo e as práticas desses sites e não podemos aceitar responsabilidade por suas respectivas políticas de privacidade.</p>
 
-    <h2>Links Externos</h2>
-    <p>Este site pode conter links para sites externos, como portais de notícias. Não nos responsabilizamos pelas práticas de privacidade desses sites.</p>
+                <h2>5. Compromisso do Usuário</h2>
+                <p>O usuário se compromete a fazer uso adequado dos conteúdos e da informação que o Gaffber oferece no site e com caráter enunciativo, mas não limitativo: a) não se envolver em atividades que sejam ilegais ou contrárias à boa fé e à ordem pública; b) não difundir propaganda ou conteúdo de natureza racista, xenofóbica, ou sobre azar, qualquer tipo de pornografia ilegal, de apologia ao terrorismo ou contra os direitos humanos; c) não causar danos aos sistemas físicos (hardwares) e lógicos (softwares) do Gaffber, de seus fornecedores ou terceiros.</p>
 
-    <h2>Contato</h2>
-    <p>Para dúvidas sobre esta Política de Privacidade, entre em contato pelo nosso <a href="https://github.com/GFFBR" target="_blank">perfil no GitHub</a>.</p>
-</div>
+                <h2>6. Alterações nesta Política de Privacidade</h2>
+                <p>Podemos atualizar nossa Política de Privacidade de tempos em tempos. Aconselhamos que você revise esta página periodicamente para quaisquer alterações. A data da última atualização será sempre indicada no topo desta página.</p>
 
-<footer>
-    &copy; 2025 Gaffber. Todos os direitos reservados.
-</footer>
+                <h2>7. Contato</h2>
+                <p>Se você tiver alguma dúvida sobre esta Política de Privacidade, entre em contato conosco através do nosso <a href="contato.html" class="text-blue-600 hover:underline">formulário de contato</a> ou pelo e-mail fornecido na página de contato.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white mt-12">
+        <div class="container mx-auto px-6 py-8 text-center">
+            <p>&copy; <span id="year"></span> Gaffber. Todos os direitos reservados.</p>
+             <div class="mt-4">
+                <a href="sobre.html" class="text-gray-400 hover:text-white mx-2">Sobre Nós</a> |
+                <a href="contato.html" class="text-gray-400 hover:text-white mx-2">Contato</a> |
+                <a href="politica.html" class="text-ray-400 hover:text-white mx-2">Política de Privacidade</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Basic script for mobile menu and year
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
 
 </body>
 </html>
+
