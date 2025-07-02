@@ -1,18 +1,82 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<title>Contato - Gaffber</title>
-<style>
-body { font-family: Arial, sans-serif; background: #f4f4f4; color: #333; margin: 0; padding: 20px; }
-.container { max-width: 600px; margin: 50px auto; background: #fff; padding: 20px; border-radius: 5px; }
-h1 { text-align: center; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato - Gaffber</title>
+    <meta name="description" content="Entre em contato com a equipe do Gaffber. Envie suas dúvidas, sugestões ou feedback.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
-<div class="container">
-  <h1>Entre em Contato</h1>
-  <p>Dúvidas ou sugestões? Envie um e-mail para: <strong>gaffber@gmail.com</strong></p>
-</div>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header -->
+    <header class="bg-white shadow-md">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-gray-900">Gaffber</a>
+            <div class="hidden md:flex space-x-6">
+                <a href="index.html" class="text-gray-600 hover:text-blue-600">Início</a>
+                <a href="sobre.html" class="text-gray-600 hover:text-blue-600">Sobre Nós</a>
+                <a href="contato.html" class="text-gray-600 hover:text-blue-600">Contato</a>
+                <a href="politica.html" class="text-gray-600 hover:text-blue-600">Política de Privacidade</a>
+            </div>
+             <button id="mobile-menu-button" class="md:hidden">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+            <a href="index.html" class="block py-2 text-gray-600 hover:text-blue-600">Início</a>
+            <a href="sobre.html" class="block py-2 text-gray-600 hover:text-blue-600">Sobre Nós</a>
+            <a href="contato.html" class="block py-2 text-gray-600 hover:text-blue-600">Contato</a>
+            <a href="politica.html" class="block py-2 text-gray-600 hover:text-blue-600">Política de Privacidade</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-12">
+        <div class="bg-white p-8 rounded-lg shadow-md max-w-xl mx-auto text-center">
+            <h1 class="text-3xl font-bold mb-4">Entre em Contato</h1>
+            <p class="text-gray-600 mb-6">Adoramos ouvir nossos leitores! Se você tem alguma dúvida, sugestão, ou apenas quer dizer "olá", sinta-se à vontade para nos contatar.</p>
+            <div class="bg-gray-100 p-6 rounded-lg">
+                <p class="text-lg">Você pode nos enviar um e-mail diretamente para:</p>
+                <a href="mailto:gaffber@gmail.com" class="text-xl font-bold text-blue-600 hover:underline">gaffber@gmail.com</a>
+                <p class="text-sm text-gray-500 mt-4">Faremos o nosso melhor para responder o mais breve possível.</p>
+            </div>
+             <p class="text-gray-600 mt-8">Você também pode nos encontrar no GitHub:</p>
+             <a href="https://github.com/GFFBR" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">Perfil Gaffber no GitHub</a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white mt-12">
+        <div class="container mx-auto px-6 py-8 text-center">
+            <p>&copy; <span id="year"></span> Gaffber. Todos os direitos reservados.</p>
+             <div class="mt-4">
+                <a href="sobre.html" class="text-gray-400 hover:text-white mx-2">Sobre Nós</a> |
+                <a href="contato.html" class="text-gray-400 hover:text-white mx-2">Contato</a> |
+                <a href="politica.html" class="text-gray-400 hover:text-white mx-2">Política de Privacidade</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Basic script for mobile menu and year
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+
 </body>
 </html>
+
