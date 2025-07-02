@@ -26,3 +26,31 @@
     font-weight: 700;
 }
 
+.ad-label {
+    display: block;
+    text-align: center;
+    font-size: 0.75rem;
+    color: #9ca3af;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.main-grid-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+}
+
+@media (min-width: 1024px) {
+    .main-grid-layout {
+        grid-template-columns: 2.5fr 1fr;
+    }
+}
+
+.sidebar-sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 6rem;
+}
+
