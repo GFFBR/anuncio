@@ -45,20 +45,18 @@ body {
 }
 
 
-/* --- NOVOS ESTILOS (ADICIONADOS) --- */
+/* --- ESTILOS DE CONTEÚDO E PAGINAÇÃO (OTIMIZADOS) --- */
 
-/* Estilo para os artigos de conteúdo massivo, usando a fonte 'Lora' para melhor legibilidade */
+/* Estilo para os artigos de conteúdo. A cor do texto é definida no HTML com classes do Tailwind. */
 .content-article {
     font-family: 'Lora', serif;
     line-height: 1.7;
-    font-size: 1.125rem; /* Aumenta um pouco o tamanho da fonte para leitura */
-    color: #1f2937; /* text-gray-800 */
+    font-size: 1.125rem;
 }
 
 .content-article h2 {
-    font-family: 'Inter', sans-serif; /* Mantém a fonte do título consistente com a UI */
+    font-family: 'Inter', sans-serif;
     line-height: 1.2;
-    color: #111827; /* text-gray-900 */
 }
 
 /* Estilos para o componente de paginação */
