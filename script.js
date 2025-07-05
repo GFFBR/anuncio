@@ -29,7 +29,8 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     if (themeToggleButton) {
-        const currentTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        // Usa o tema salvo ou prefere o escuro como padrão
+        const currentTheme = localStorage.getItem('theme') || 'dark';
         applyTheme(currentTheme);
 
         themeToggleButton.addEventListener('click', () => {
@@ -39,10 +40,12 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // Supondo que a biblioteca hljs seja carregada em páginas de artigo
     if (typeof hljs !== 'undefined') {
         hljs.highlightAll();
     }
 
+    // Função de cópia modernizada
     document.querySelectorAll('pre code').forEach((block) => {
         const pre = block.parentNode;
         const copyButton = document.createElement('button');
@@ -52,17 +55,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
         copyButton.addEventListener('click', () => {
             const codeToCopy = block.innerText;
-            const tempTextArea = document.createElement('textarea');
-            tempTextArea.value = codeToCopy;
-            document.body.appendChild(tempTextArea);
-            tempTextArea.select();
-            document.execCommand('copy');
-            document.body.removeChild(tempTextArea);
 
-            copyButton.textContent = 'Copiado!';
-            setTimeout(() => {
-                copyButton.textContent = 'Copiar';
-            }, 2000);
+            navigator.clipboard.writeText(codeToCopy).then(() => {
+                copyButton.textContent = 'Copiado!';
+                setTimeout(() => {
+                    copyButton.textContent = 'Copiar';
+                }, 2000);
+            }).catch(err => {
+                console.error('Falha ao copiar o código.', err);
+                copyButton.textContent = 'Erro';
+                setTimeout(() => {
+                    copyButton.textContent = 'Copiar';
+                }, 2000);
+            });
         });
     });
 });
