@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<!DOCTYPE html><html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sobre Nós - Gaffber</title>
-    <meta name="description" content="Conheça mais sobre o projeto Gaffber, tecnologia, desenvolvimento pessoal e inspiração.">
-    <link rel="canonical" href="https://GFFBR.github.io/sobre.html">
+    <meta name="description" content="Conheça mais sobre o Gaffber e nossa missão.">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,49 +11,45 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-black text-white min-h-screen font-sans">
-
-<header class="bg-black/80 backdrop-blur-md sticky top-0 z-50">
+<body class="bg-black text-white min-h-screen font-sans"><header class="bg-black/80 backdrop-blur-md sticky top-0 z-50">
 <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
     <a href="index.html" class="text-2xl font-bold text-cyan-400 drop-shadow-[0_0_8px_rgba(34,211,238,0.8)]">Gaffber</a>
     <div class="flex items-center space-x-4">
         <div class="hidden md:flex space-x-6">
-        <a href="index.html" class="nav-link text-fuchsia-400 hover:text-yellow-300">Início</a>
-        <a href="sobre.html" class="nav-link text-fuchsia-400 hover:text-yellow-300">Sobre Nós</a>
-        <a href="contato.html" class="nav-link text-fuchsia-400 hover:text-yellow-300">Contato</a>
-        <a href="politica.html" class="nav-link text-fuchsia-400 hover:text-yellow-300">Política de Privacidade</a>
+            <a href="index.html" class="nav-link text-fuchsia-400 hover:text-yellow-300">Início</a>
+            <a href="sobre.html" class="nav-link nav-active text-fuchsia-400 hover:text-yellow-300">Sobre Nós</a>
+            <a href="contato.html" class="nav-link text-fuchsia-400 hover:text-yellow-300">Contato</a>
+            <a href="politica.html" class="nav-link text-fuchsia-400 hover:text-yellow-300">Política de Privacidade</a>
         </div>
-        <button id="theme-toggle" class="text-yellow-400 hover:text-yellow-300">🌓</button>
+        <button id="theme-toggle" class="text-yellow-400 hover:text-yellow-300">
+            <svg id="theme-toggle-dark-icon" class="hidden h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+            </svg>
+            <svg id="theme-toggle-light-icon" class="hidden h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707z"></path>
+            </svg>
+        </button>
         <button id="mobile-menu-button" class="md:hidden text-yellow-400">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
             </svg>
         </button>
     </div>
 </nav>
 <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 space-y-2">
     <a href="index.html" class="block py-2 text-fuchsia-400 hover:text-yellow-300 nav-link">Início</a>
-    <a href="sobre.html" class="block py-2 text-fuchsia-400 hover:text-yellow-300 nav-link">Sobre Nós</a>
+    <a href="sobre.html" class="block py-2 text-fuchsia-400 hover:text-yellow-300 nav-link nav-active">Sobre Nós</a>
     <a href="contato.html" class="block py-2 text-fuchsia-400 hover:text-yellow-300 nav-link">Contato</a>
     <a href="politica.html" class="block py-2 text-fuchsia-400 hover:text-yellow-300 nav-link">Política de Privacidade</a>
 </div>
-</header>
-
-<main class="container mx-auto px-6 py-16">
-    <h1 class="text-4xl font-extrabold text-fuchsia-500 drop-shadow-[0_0_10px_rgba(236,72,153,0.8)] mb-8 text-center">Sobre o Gaffber</h1>
-    <div class="max-w-3xl mx-auto text-gray-300 space-y-6 bg-black/60 backdrop-blur-sm p-6 rounded-lg border border-fuchsia-500">
-        <p>O Gaffber nasceu com o propósito de compartilhar conteúdo relevante sobre desenvolvimento pessoal, tecnologia, produtividade e bem-estar.</p>
-        <p>Inspirado no universo Cyberpunk, trazemos artigos com visual ousado e temas que exploram o potencial humano e as possibilidades digitais.</p>
-        <p>Acreditamos que o conhecimento pode transformar vidas. Junte-se a nós nessa jornada!</p>
-    </div>
-</main>
-
-<footer class="border-t border-gray-200 dark:border-gray-700 mt-16">
-    <div class="container mx-auto px-6 py-8 text-center text-gray-500">
+</header><main class="container mx-auto px-6 py-12">
+    <h1 class="text-4xl font-extrabold text-fuchsia-500 dark:text-fuchsia-400 mb-6">Sobre o Gaffber</h1>
+    <p class="text-lg text-gray-300 max-w-3xl">
+        O Gaffber é um blog dedicado ao desenvolvimento pessoal, bem-estar e tecnologia. Nosso objetivo é fornecer conteúdo de qualidade que inspire sua evolução e amplie sua visão sobre o mundo digital.
+    </p>
+</main><footer class="border-t border-gray-200 dark:border-gray-700 mt-16">
+    <div class="container mx-auto px-6 py-8 text-center text-gray-500 dark:text-gray-400">
         <p>&copy; <span id="year"></span> Gaffber. Todos os direitos reservados.</p>
     </div>
-</footer>
-
-<script src="script.js"></script>
-</body>
+</footer><script src="script.js"></script></body>
 </html>
