@@ -5,6 +5,65 @@ document.addEventListener('DOMContentLoaded', function () {
     const darkIcon = document.getElementById('theme-toggle-dark-icon');
     const lightIcon = document.getElementById('theme-toggle-light-icon');
     const yearSpan = document.getElementById('year');
+    
+    // --- INÍCIO DO CÓDIGO DE PAGINAÇÃO ---
+
+    // Verifica se estamos na página inicial antes de executar
+    const postsContainer = document.getElementById('posts-container');
+    if (postsContainer) {
+        const paginationContainer = document.getElementById('pagination-container');
+        const posts = Array.from(postsContainer.getElementsByClassName('post-card'));
+        
+        // Defina quantos artigos você quer por página
+        const postsPerPage = 2; // Mude para 10 quando tiver mais conteúdo
+        let currentPage = 1;
+
+        function displayPosts(page) {
+            // Esconde todos os posts
+            posts.forEach(post => post.classList.add('hidden'));
+
+            const startIndex = (page - 1) * postsPerPage;
+            const endIndex = startIndex + postsPerPage;
+            const postsToShow = posts.slice(startIndex, endIndex);
+
+            // Mostra apenas os posts da página atual
+            postsToShow.forEach(post => post.classList.remove('hidden'));
+        }
+
+        function setupPagination() {
+            const pageCount = Math.ceil(posts.length / postsPerPage);
+            paginationContainer.innerHTML = ''; // Limpa botões antigos
+
+            for (let i = 1; i <= pageCount; i++) {
+                const button = document.createElement('button');
+                button.innerText = i;
+                // Estilização com TailwindCSS
+                button.className = 'px-4 py-2 rounded-md transition-colors duration-300';
+
+                if (i === currentPage) {
+                    // Estilo do botão da página ativa
+                    button.classList.add('bg-fuchsia-500', 'text-white', 'font-bold');
+                } else {
+                    // Estilo dos outros botões
+                    button.classList.add('bg-gray-800', 'text-gray-300', 'hover:bg-fuchsia-400');
+                }
+
+                button.addEventListener('click', () => {
+                    currentPage = i;
+                    displayPosts(currentPage);
+                    setupPagination(); // Recria os botões para atualizar o estilo do botão ativo
+                    window.scrollTo(0, 0); // Opcional: Rola a página para o topo ao trocar de página
+                });
+
+                paginationContainer.appendChild(button);
+            }
+        }
+
+        // Inicia o sistema
+        displayPosts(currentPage);
+        setupPagination();
+    }
+    // --- FIM DO CÓDIGO DE PAGINAÇÃO ---
 
     if (mobileMenuButton && mobileMenu) {
         mobileMenuButton.addEventListener('click', () => {
@@ -71,4 +130,3 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
-
