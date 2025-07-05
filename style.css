@@ -34,6 +34,7 @@ header {
     border-bottom: 1px solid var(--border-color);
 }
 
+/*
 .nav-link {
     color: var(--meta-color);
     transition: color 0.2s;
@@ -41,7 +42,7 @@ header {
 
 .nav-link:hover {
     color: var(--link-color);
-}
+}*/
 
 .nav-active {
     color: var(--text-color);
@@ -80,7 +81,7 @@ html[data-theme='dark'] .nav-active {
 .post-excerpt {
     color: var(--text-color);
 }
-
+/*
 .read-more-btn {
     color: var(--link-color);
     font-weight: 600;
@@ -89,7 +90,7 @@ html[data-theme='dark'] .nav-active {
 
 .read-more-btn:hover {
     color: var(--link-hover-color);
-}
+}*/
 
 .content-article {
     font-family: 'Lora', serif;
@@ -148,3 +149,27 @@ html[data-theme='dark'] .nav-active {
     letter-spacing: 0.05em;
 }
 
+/* Adicione no style.css */
+.nav-link {
+    color: #22d3ee; /* Ciano Neon */
+    transition: all 0.3s ease;
+    text-shadow: 0 0 6px rgba(34, 211, 238, 0.7);
+}
+
+.nav-link:hover {
+    color: #facc15; /* Amarelo Neon */
+    text-shadow: 0 0 12px rgba(250, 204, 21, 0.8);
+}
+
+.read-more-btn {
+    color: #f472b6; /* Rosa Neon */
+    text-shadow: 0 0 8px rgba(244, 114, 182, 0.8);
+    border-bottom: 1px solid #f472b6;
+    transition: all 0.3s ease;
+}
+
+.read-more-btn:hover {
+    color: #facc15;
+    text-shadow: 0 0 12px rgba(250, 204, 21, 0.8);
+    border-color: #facc15;
+}
