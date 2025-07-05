@@ -14,17 +14,32 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3940256099942544" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="bg-black text-white min-h-screen font-sans">
+
+    <header class="bg-black/80 backdrop-blur-md sticky top-0 z-50">
+    <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+        <a href="index.html" class="text-2xl font-bold text-cyan-400 drop-shadow-[0_0_8px_rgba(34,211,238,0.8)]">Gaffber</a>
+        <div class="flex items-center space-x-4">
+            <div class="hidden md:flex space-x-6">
+                <a href="index.html" class="nav-link nav-active">Início</a>
+                <a href="sobre.html" class="nav-link">Sobre Nós</a>
+                <a href="contato.html" class="nav-link">Contato</a>
+            </div>
+            <button id="theme-toggle" class="text-yellow-400 hover:text-yellow-300">🌓</button>
+        </div>
+    </nav>
+</header>
+    <!--
     <header class="bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm sticky top-0 z-50">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-bold text-gray-900 dark:text-white">Gaffber</a>
+            <a href="index.html" class="text-2xl font-bold text-cyan-400 drop-shadow-[0_0_8px_rgba(34,211,238,0.8)]">Gaffber</a>
             <div class="flex items-center space-x-4">
                 <div class="hidden md:flex space-x-6">
                     <a href="index.html" class="nav-link nav-active">Início</a>
                     <a href="sobre.html" class="nav-link">Sobre Nós</a>
                     <a href="contato.html" class="nav-link">Contato</a>
                 </div>
-                <button id="theme-toggle" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg text-sm p-2.5">
+                <button id="theme-toggle" class="text-yellow-400 hover:text-yellow-300">
                     <svg id="theme-toggle-dark-icon" class="hidden h-5 w-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
                     <svg id="theme-toggle-light-icon" class="hidden h-5 w-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
                 </button>
@@ -38,26 +53,27 @@
             <a href="sobre.html" class="block py-2 nav-link">Sobre Nós</a>
             <a href="contato.html" class="block py-2 nav-link">Contato</a>
         </div>
-    </header>
+    </header> -->
+    
     <main class="container mx-auto px-6 py-8">
         <section class="text-center my-16">
-            <h1 class="text-5xl font-extrabold text-emerald-700 dark:text-emerald-400 mb-4">Blog Gaffber</h1>
+            <h1 class="text-5xl font-extrabold text-fuchsia-500 dark:text-fuchsia-400 drop-shadow-[0_0_10px_rgba(236,72,153,0.8)] mb-4">Blog Gaffber</h1>
             <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">Artigos, tutoriais e reflexões sobre desenvolvimento pessoal, bem-estar e tecnologia.</p>
         </section>
         <div class="space-y-12 max-w-4xl mx-auto">
-            <article class="post-card">
+            <article class="post-card p-6 bg-black/60 backdrop-blur-sm border border-fuchsia-500 rounded-lg hover:border-yellow-400 transition-all">
                 <p class="post-meta">02 de Julho de 2025</p>
                 <h2 class="text-2xl font-bold mt-2"><a href="como-se-motivar.html" class="post-title">Como se Motivar Todos os Dias: Um Guia Prático</a></h2>
                 <p class="post-excerpt mt-4">Manter a motivação é um desafio, mas pequenas atitudes transformam sua rotina. Neste artigo, exploramos técnicas baseadas na psicologia para construir uma fonte de motivação interna e duradoura.</p>
                 <a href="como-se-motivar.html" class="read-more-btn mt-4 inline-block">Leia Mais &rarr;</a>
             </article>
-            <article class="post-card">
+            <article class="post-card p-6 bg-black/60 backdrop-blur-sm border border-fuchsia-500 rounded-lg hover:border-yellow-400 transition-all">
                 <p class="post-meta">01 de Julho de 2025</p>
                 <h2 class="text-2xl font-bold mt-2"><a href="bem-estar-digital.html" class="post-title">Bem-Estar no Mundo Digital: Encontrando o Equilíbrio</a></h2>
                 <p class="post-excerpt mt-4">Viver conectado é essencial, mas o equilíbrio é fundamental para a saúde mental. Discutimos estratégias para usar a tecnologia a seu favor, evitando o burnout e a sobrecarga de informação.</p>
                 <a href="bem-estar-digital.html" class="read-more-btn mt-4 inline-block">Leia Mais &rarr;</a>
             </article>
-            <article class="post-card">
+            <article class="post-card p-6 bg-black/60 backdrop-blur-sm border border-fuchsia-500 rounded-lg hover:border-yellow-400 transition-all">
                 <p class="post-meta">30 de Junho de 2025</p>
                 <h2 class="text-2xl font-bold mt-2"><a href="desenvolvendo-resiliencia.html" class="post-title">Desenvolvendo Resiliência em Tempos Difíceis</a></h2>
                 <p class="post-excerpt mt-4">A resiliência é a chave para superar desafios e se adaptar a mudanças. Neste guia, apresentamos os pilares da resiliência e como você pode fortalecê-los no seu dia a dia.</p>
