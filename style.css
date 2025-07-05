@@ -57,11 +57,10 @@ html[data-theme='dark'] .nav-active {
 .post-card {
     background-color: var(--card-bg-color);
     border: 1px solid var(--border-color);
-    @apply p-6 rounded-lg transition-all duration-300;
 }
 
 .post-card:hover {
-    @apply shadow-lg border-blue-500/50;
+    @apply shadow-lg border-blue-500/50; /* Note: @apply still won't work with CDN, but hover effect can be customized here */
     transform: translateY(-2px);
 }
 
@@ -117,7 +116,7 @@ html[data-theme='dark'] .nav-active {
     position: relative;
     background-color: #161b22;
     border: 1px solid var(--border-color);
-    @apply rounded-lg p-4 overflow-x-auto;
+    /* A classe 'rounded-lg p-4 overflow-x-auto' está no HTML */
 }
 
 .copy-code-btn {
